@@ -18,4 +18,7 @@ var app = new EmberAddon();
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
 
+app.import("bower_components/nouislider/distribute/jquery.nouislider.all.js");
+app.import("bower_components/nouislider/distribute/jquery.nouislider.min.css");
+
 module.exports = app.toTree();
