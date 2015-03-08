@@ -27,5 +27,5 @@ test('it added a slider', function(assert) {
   var component = this.subject();
   this.render();
 
-  assert.ok(!this.$().empty(), "component is not empty");
+  assert.ok(!this.$().is(":empty"), "component is not empty");
 });
