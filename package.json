@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-nouislider",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Ember range-slider component powered by nouislider",
   "directories": {
     "doc": "doc",
@@ -32,7 +32,8 @@
     "ember-data": "1.0.0-beta.15",
     "ember-export-application-global": "^1.0.2",
     "express": "^4.8.5",
-    "glob": "^4.0.5"
+    "glob": "^4.0.5",
+    "rimraf": "^2.2.8"
   },
   "keywords": [
     "ember-addon",
@@ -44,8 +45,5 @@
   ],
   "ember-addon": {
     "configPath": "tests/dummy/config"
-  },
-  "dependencies": {
-    "rimraf": "^2.2.8"
   }
 }
