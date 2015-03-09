@@ -1,4 +1,6 @@
-## 0.1.1 (in progress)
+## master
+
+## 0.1.1 2015-03-09
 
 * Moved rimraf dependency to devDependencies
 
