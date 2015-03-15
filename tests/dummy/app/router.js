@@ -6,6 +6,9 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('download');
+  this.route('component');
+  this.route('options');
 });
 
 export default Router;

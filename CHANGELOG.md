@@ -1,5 +1,6 @@
 ## master
 
+* Now observe changes to `start` and pass the changes on to noUiSlider
 * Changed the default value of `start` to be `undefined`
 * Changed the default value of `step` to be `undefined`
 * Added missing `animate` attribute, default to `true`.

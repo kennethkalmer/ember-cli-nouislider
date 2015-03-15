@@ -1,0 +1,95 @@
+{{ partial "navigation" }}
+
+<div class="content">
+  <h1>Create your component</h1>
+  <section>
+    <div class="double">
+      <p>
+        Due to the way ember-cli addons work, you'll need to generate your own
+        <em>range-slider</em> component, inheriting from the component shipped
+        with the addon.
+      </p>
+      <p>
+        Ensure you've already {{#link-to 'download'}}downloaded &amp; installed{{/link-to}}
+        the addon
+      </p>
+    </div>
+  </section>
+
+  <a href="#section-generate" id="section-generate" class="sect">§</a>
+  <h2>Generate</h2>
+  <section>
+    <div class="view">
+      <p>Generate your own range-slider component using ember-cli.</p>
+    </div>
+    <div class="side">
+      <pre>
+$ ember g component range-slider
+      </pre>
+    </div>
+  </section>
+
+  <a href="#section-extend" id="section-extend" class="sect">§</a>
+  <h2>Extend</h2>
+  <section>
+    <div class="view">
+      <p>Change your generate component to extend the range-slider component</p>
+    </div>
+    <div class="side">
+      {{#source-code language="javascript"}}
+// app/components/range-slider.js
+import RangeSlider from 'ember-cli-nouislider/components/range-slider';
+
+export default RangeSlider.extend({});
+      {{/source-code}}
+    </div>
+  </section>
+
+  <a href="#section-render" id="section-render" class="sect">§</a>
+  <h2>Render</h2>
+  <section>
+    <div class="view">
+      <p>Render your range-slider where you need it</p>
+    </div>
+    <div class="side">
+      {{#source-code language="handlebars"}}
+\{{! some template }}
+\{{range-slider start=someValue change="changedAction"}}
+      {{/source-code}}
+    </div>
+  </section>
+
+  <a href="#section-action" id="section-action" class="sect">§</a>
+  <h2>Action</h2>
+  <section>
+    <div class="view">
+      <p>
+        Lastly, setup an action handler in your route to catch
+        any changes to the slider values.
+      </p>
+    </div>
+    <div class="side">
+      {{#source-code language="javascript"}}
+// app/routes/my-route.js
+import Ember from 'ember';
+
+export default Ember.Route.extend({
+  // ...
+  actions: {
+    // ...
+    changedAction: function(value) {
+      Ember.debug( "New slider value: %@".fmt( value ) );
+    }
+  }
+});
+      {{/source-code}}
+    </div>
+  </section>
+
+  <h2>Next</h2>
+  <section>
+    <div class="double">
+      <p>Review the {{#link-to 'options'}}available options{{/link-to}}...</p>
+    </div>
+  </section>
+</div>

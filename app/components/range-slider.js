@@ -43,5 +43,10 @@ export default Ember.Component.extend({
 
   willDestroyElement: function() {
     this.slider[0].destroy();
-  }
+  },
+
+  setVal: function() {
+    var val = this.get('start');
+    this.slider.val( val );
+  }.observes('start')
 });

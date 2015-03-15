@@ -21,4 +21,7 @@ var app = new EmberAddon();
 app.import("bower_components/nouislider/distribute/jquery.nouislider.all.js");
 app.import("bower_components/nouislider/distribute/jquery.nouislider.min.css");
 
+app.import("vendor/prism.js");
+app.import("vendor/prism.css");
+
 module.exports = app.toTree();
