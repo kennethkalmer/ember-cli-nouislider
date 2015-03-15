@@ -1,7 +1,17 @@
-<h2>Default slider</h2>
+<div class="hi">
+  <h1>&lt;range-slider&gt;</h1>
+  <h2>$.noUiSlider (jQuery-only) Range Slider Component for Ember.js</h2>
 
-{{range-slider}}
+  <div class="quick">
+    {{range-slider start=value min=0 max=100 connect=true}}
 
-<h2>Model</h2>
+    {{#source-code}}
+\{{range-slider start=value
+               min=0
+               max=100
+               connect=true
+}}
+    {{/source-code}}
 
-{{range-slider start=value change="sliderChanged" connect="lower"}}
+  </div>
+</div>

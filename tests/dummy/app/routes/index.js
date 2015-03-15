@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   model: function() {
     return {
-      value: 60
+      value: [20, 80]
     };
   },
 

@@ -1,0 +1,12 @@
+// Import the base styles
+@import "base";
+
+// Now we can tweak them where needed
+
+.hi {
+  h2 {
+    @media (min-width: 800px) {
+      margin-top: 5px;
+    }
+  }
+}
