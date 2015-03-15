@@ -31,7 +31,7 @@
     <div class="view">
       <p>The start option sets the number of handles and their start positions, relative to <code>range</code>.</p>
       <div class="example">
-        {{range-slider start=startOne range=defaultRange}}
+        {{range-slider start=defaultStart range=defaultRange}}
       </div>
 
       <div class="options">
@@ -48,7 +48,7 @@
 
     <div class="side">
       {{#source-code language="handlebars"}}
-\{{range-slider start=startOne
+\{{range-slider start=defaultStart
                range=defaultRange}}
       {{/source-code}}
     </div>
@@ -88,9 +88,9 @@
       <p>When using two handles, the minimum distance between the handles can be set using the margin option. The margin value is relative to the value set in 'range'. This option is only available on standard linear sliders.</p>
 
       <div class="example">
-        {{range-slider start=startMargin margin=30 range=defaultRange}}
-        <span class="example-val" id="slider-margin-value-min"></span>
-        <span class="example-val" id="slider-margin-value-max"></span>
+        {{range-slider start=margins margin=30 range=defaultRange change="marginChanged"}}
+        <span class="example-val">{{marginMin}}</span>
+        <span class="example-val">{{marginMax}}</span>
       </div>
 
       <div class="options">
@@ -105,7 +105,7 @@
 
     <div class="side">
       {{#source-code language="handlebars"}}
-\{{range-slider start=startMargin
+\{{range-slider start=margins
                margin=30
                range=defaultRange}}
       {{/source-code}}
@@ -117,10 +117,10 @@
     <div class="view">
       <p>The limit option is the oposite of the margin option, limiting the maximum distance between two handles. As with the margin option, the limit option can only be used on linear sliders.</p>
       <div class="example">
-        {{range-slider start=limitStart limit=40 behaviour="drag" connect=true range=defaultRange}}
+        {{range-slider start=limits limit=40 behaviour="drag" connect=true range=defaultRange change="limitsChanged"}}
         <div id="slider-limit"></div>
-        <span class="example-val" id="slider-limit-value-min"></span>
-        <span class="example-val" id="slider-limit-value-max"></span>
+        <span class="example-val">{{limitMin}}</span>
+        <span class="example-val">{{limitMax}}</span>
       </div>
 
       <div class="options">
@@ -135,7 +135,7 @@
 
     <div class="side">
       {{#source-code language="handlebars"}}
-\{{range-slider start=limitStart
+\{{range-slider start=limits
                limit=40
                behaviour="drag"
                connect=true
@@ -150,7 +150,7 @@
       <p>By default, the slider slides fluently. In order to make the handles jump between intervals, you can use this option. The step option is relative to the values provided to <code>range</code>.</p>
 
       <div class="example">
-        {{range-slider range=defaultRange step=10 start=stepStart}}
+        {{range-slider range=defaultRange step=10 start=steps}}
       </div>
 
       <div class="options">
@@ -167,7 +167,7 @@
       {{#source-code language="handlebars"}}
 \{{range-slider range=defaultRange
                step=10
-               start=stepStart}}
+               start=steps}}
       {{/source-code}}
     </div>
   </section>
@@ -207,7 +207,8 @@
       <p>By default the sliders are <em>top-to-bottom</em> and <em>left-to-right</em>, but you can change this using the direction option, which decides where the upper side of the slider is.</p>
 
       <div class="example">
-        {{range-slider start=20 direction="rtl" range=defaultRange}}
+        {{range-slider start=direction direction="rtl" range=defaultRange change="directionChanged"}}
+        <span class="example-val">{{direction}}</span>
       </div>
 
       <div class="options">
@@ -221,7 +222,7 @@
 
     <div class="side">
       {{#source-code language="handlebars"}}
-\{{range-slider start=20
+\{{range-slider start=direction
                direction="rtl"
                range=defaultRange}}
       {{/source-code}}
@@ -235,12 +236,12 @@
       <p>Set the animate option to <code>false</code> to prevent the slider from animating to a new value with when calling <code>.val()</code>.</p>
 
       <div class="example" style="margin: 0; padding-bottom: 20px">
-        {{range-slider start=animateStart animate=true range=defaultRange}}
+        {{range-slider start=animate animate=true range=defaultRange}}
         <button {{action "animateValues"}}>Set sliders</button>
       </div>
 
       <div class="example" style="margin: 0;">
-        {{range-slider start=animateStart animate=false range=defaultRange}}
+        {{range-slider start=animate animate=false range=defaultRange}}
       </div>
 
       <div class="options">
@@ -254,11 +255,11 @@
 
     <div class="side">
       {{#source-code language="handlebars"}}
-\{{range-slider start=animateStart
+\{{range-slider start=animate
                animate=true
                range=defaultRange}}
 
-\{{range-slider start=animateStart
+\{{range-slider start=animate
                animate=false
                range=defaultRange}}
       {{/source-code}}
