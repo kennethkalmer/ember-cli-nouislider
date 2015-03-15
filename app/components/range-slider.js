@@ -2,14 +2,15 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
-  start: 50,
-  step: 10,
-  margin: undefined,
-  limit: undefined,
-  connect: false,
-  orientation: "horizontal",
-  direction: "ltr",
-  behaviour: "tap",
+  start:        undefined,
+  step:         undefined,
+  margin:       undefined,
+  limit:        undefined,
+  connect:      false,
+  orientation:  "horizontal",
+  direction:    "ltr",
+  behaviour:    "tap",
+  animate:      true,
 
   min: 0,
   max: 100,
@@ -30,7 +31,8 @@ export default Ember.Component.extend({
       connect:     this.get('connect'),
       orientation: this.get('orientation'),
       direction:   this.get('direction'),
-      behaviour:   this.get('behaviour')
+      behaviour:   this.get('behaviour'),
+      animate:     this.get('animate')
     });
 
     var _this = this;
