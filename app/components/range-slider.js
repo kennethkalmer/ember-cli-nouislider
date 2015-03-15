@@ -46,7 +46,9 @@ export default Ember.Component.extend({
   },
 
   setVal: function() {
-    var val = this.get('start');
-    this.slider.val( val );
+    if (this.slider) {
+      var val = this.get('start');
+      this.slider.val( val );
+    }
   }.observes('start')
 });

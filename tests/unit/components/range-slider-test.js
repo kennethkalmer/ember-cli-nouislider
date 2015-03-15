@@ -6,6 +6,10 @@ import {
 moduleForComponent('range-slider', {
   // specify the other units that are required for this test
   // needs: ['component:foo', 'helper:bar']
+  beforeEach: function() {
+    var component = this.subject();
+    component.set("start", 20);
+  }
 });
 
 test('it renders', function(assert) {
