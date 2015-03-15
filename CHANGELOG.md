@@ -1,5 +1,7 @@
 ## master
 
+## 0.2.0 2015-03-16
+
 * Now observe changes to `start` and pass the changes on to noUiSlider
 * Changed the default value of `start` to be `undefined`
 * Changed the default value of `step` to be `undefined`
