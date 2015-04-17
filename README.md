@@ -17,6 +17,11 @@ $ ember install:addon ember-cli-nouislider
 This will install `nouislider` via Bower, and will include it into your application's
 mergetree, so you don't need to worry about anything there.
 
+## Demo & documentation
+
+Have a look around then [demo and documentation](http://kennethkalmer.github.com/ember-cli-nouislider)
+to get a feel for how to use it.
+
 ## Component
 
 Once the installation is done, you'll need to generate your own component and re-export

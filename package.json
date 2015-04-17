@@ -12,6 +12,7 @@
     "test": "ember try:testall"
   },
   "repository": "https://github.com/kennethkalmer/ember-cli-nouislider",
+  "homepage": "http://kennethkalmer.github.com/ember-cli-nouislider",
   "engines": {
     "node": ">= 0.10.0"
   },
