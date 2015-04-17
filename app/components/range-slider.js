@@ -14,12 +14,12 @@ export default Ember.Component.extend({
 
   min: 0,
   max: 100,
-  range: function() {
+  range: Ember.computed("min", "max", function() {
     return {
       min: this.get('min'),
       max: this.get('max')
     }
-  }.property("min", "max"),
+  }),
 
   didInsertElement: function() {
     this.slider = this.$().noUiSlider({
@@ -45,10 +45,10 @@ export default Ember.Component.extend({
     this.slider[0].destroy();
   },
 
-  setVal: function() {
+  setVal: Ember.observer('start', function() {
     if (this.slider) {
       var val = this.get('start');
       this.slider.val( val );
     }
-  }.observes('start')
+  })
 });
