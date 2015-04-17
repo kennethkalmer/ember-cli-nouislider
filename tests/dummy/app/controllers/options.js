@@ -1,23 +1,23 @@
 import Ember from 'ember';
 
-export default Ember.ObjectController.extend({
-  marginMin: function() {
-    var model = this.get('model');
-    return model.get('margins.firstObject');
-  }.property('model.margins.[]'),
+export default Ember.Controller.extend({
+  marginMin: Ember.computed('model.margins.[]', function() {
+    var margins = Ember.A(this.get('model.margins'));
+    return margins.get('firstObject');
+  }),
 
-  marginMax: function() {
-    var model = this.get('model');
-    return model.get('margins.lastObject');
-  }.property('model.margins.[]'),
+  marginMax: Ember.computed('model.margins.[]', function() {
+    var margins = Ember.A(this.get('model.margins'));
+    return margins.get('lastObject');
+  }),
 
-  limitMin: function() {
-    var model = this.get('model');
-    return model.get('limits.firstObject');
-  }.property('model.limits.[]'),
+  limitMin: Ember.computed('model.limits.[]', function() {
+    var limits = Ember.A(this.get('model.limits'));
+    return limits.get('firstObject');
+  }),
 
-  limitMax: function() {
-    var model = this.get('model');
-    return model.get('limits.lastObject');
-  }.property('model.limits.[]')
+  limitMax: Ember.computed('model.limits.[]', function() {
+    var limits = Ember.A(this.get('model.limits'));
+    return limits.get('lastObject');
+  })
 });

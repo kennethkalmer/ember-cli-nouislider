@@ -7,7 +7,7 @@ export default Ember.Route.extend({
       defaultStart: [ 20, 80 ],
 
       margins: [ 20, 80 ],
-      limits: [ 20, 120 ],
+      limits: [ 20, 60 ],
       steps: [ 20, 80 ],
       direction: 20,
       animate: 20,
