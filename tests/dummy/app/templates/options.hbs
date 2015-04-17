@@ -31,7 +31,7 @@
     <div class="view">
       <p>The start option sets the number of handles and their start positions, relative to <code>range</code>.</p>
       <div class="example">
-        {{range-slider start=defaultStart range=defaultRange}}
+        {{range-slider start=model.defaultStart range=model.defaultRange}}
       </div>
 
       <div class="options">
@@ -48,8 +48,8 @@
 
     <div class="side">
       {{#source-code language="handlebars"}}
-\{{range-slider start=defaultStart
-               range=defaultRange}}
+\{{range-slider start=model.defaultStart
+               range=model.defaultRange}}
       {{/source-code}}
     </div>
   </section>
@@ -60,7 +60,7 @@
       <p>The connect setting can be used to control the bar between the handles, or the edges of the slider. Use <code>"lower"</code> to connect to the lower side, or <code>"upper"</code> to connect to the upper side. Setting <code>true</code> sets the bar between the handles.</p>
 
       <div class="example">
-        {{range-slider start=40 connect="lower" range=defaultRange}}
+        {{range-slider start=40 connect="lower" range=model.defaultRange}}
       </div>
 
       <div class="options">
@@ -76,7 +76,7 @@
       {{#source-code language="handlebars"}}
 \{{range-slider start=40
                connect="lower"
-               range=defaultRange}}
+               range=model.defaultRange}}
       {{/source-code}}
     </div>
   </section>
@@ -88,7 +88,7 @@
       <p>When using two handles, the minimum distance between the handles can be set using the margin option. The margin value is relative to the value set in 'range'. This option is only available on standard linear sliders.</p>
 
       <div class="example">
-        {{range-slider start=margins margin=30 range=defaultRange change="marginChanged"}}
+        {{range-slider start=model.margins margin=30 range=model.defaultRange change="marginChanged"}}
         <span class="example-val">{{marginMin}}</span>
         <span class="example-val">{{marginMax}}</span>
       </div>
@@ -105,9 +105,9 @@
 
     <div class="side">
       {{#source-code language="handlebars"}}
-\{{range-slider start=margins
+\{{range-slider start=model.margins
                margin=30
-               range=defaultRange}}
+               range=model.defaultRange}}
       {{/source-code}}
     </div>
   </section>
@@ -117,7 +117,7 @@
     <div class="view">
       <p>The limit option is the oposite of the margin option, limiting the maximum distance between two handles. As with the margin option, the limit option can only be used on linear sliders.</p>
       <div class="example">
-        {{range-slider start=limits limit=40 behaviour="drag" connect=true range=defaultRange change="limitsChanged"}}
+        {{range-slider start=model.limits limit=40 behaviour="drag" connect=true range=model.defaultRange change="limitsChanged"}}
         <div id="slider-limit"></div>
         <span class="example-val">{{limitMin}}</span>
         <span class="example-val">{{limitMax}}</span>
@@ -135,11 +135,11 @@
 
     <div class="side">
       {{#source-code language="handlebars"}}
-\{{range-slider start=limits
+\{{range-slider start=model.limits
                limit=40
                behaviour="drag"
                connect=true
-               range=defaultRange}}
+               range=model.defaultRange}}
       {{/source-code}}
     </div>
   </section>
@@ -150,7 +150,7 @@
       <p>By default, the slider slides fluently. In order to make the handles jump between intervals, you can use this option. The step option is relative to the values provided to <code>range</code>.</p>
 
       <div class="example">
-        {{range-slider range=defaultRange step=10 start=steps}}
+        {{range-slider range=model.defaultRange step=10 start=model.steps}}
       </div>
 
       <div class="options">
@@ -165,9 +165,9 @@
 
     <div class="side">
       {{#source-code language="handlebars"}}
-\{{range-slider range=defaultRange
+\{{range-slider range=model.defaultRange
                step=10
-               start=steps}}
+               start=model.steps}}
       {{/source-code}}
     </div>
   </section>
@@ -179,7 +179,7 @@
       <p><strong>Set dimensions!</strong> Vertical sliders don't assume a default <code>height</code>, so you'll need to set one. You can use any unit you want, including <code>%</code> or <code>px</code>.</p>
 
       <div class="example vertical">
-        {{range-slider start=40 orientation="vertical" range=defaultRange}}
+        {{range-slider start=40 orientation="vertical" range=model.defaultRange}}
       </div>
 
       <div class="options">
@@ -195,7 +195,7 @@
       {{#source-code language="handlebars"}}
 \{{range-slider start=40
                orientation="vertical"
-               range=defaultRange}}
+               range=model.defaultRange}}
       {{/source-code}}
     </div>
   </section>
@@ -207,8 +207,8 @@
       <p>By default the sliders are <em>top-to-bottom</em> and <em>left-to-right</em>, but you can change this using the direction option, which decides where the upper side of the slider is.</p>
 
       <div class="example">
-        {{range-slider start=direction direction="rtl" range=defaultRange change="directionChanged"}}
-        <span class="example-val">{{direction}}</span>
+        {{range-slider start=model.direction direction="rtl" range=model.defaultRange change="directionChanged"}}
+        <span class="example-val">{{model.direction}}</span>
       </div>
 
       <div class="options">
@@ -222,9 +222,9 @@
 
     <div class="side">
       {{#source-code language="handlebars"}}
-\{{range-slider start=direction
+\{{range-slider start=model.direction
                direction="rtl"
-               range=defaultRange}}
+               range=model.defaultRange}}
       {{/source-code}}
     </div>
   </section>
@@ -236,12 +236,12 @@
       <p>Set the animate option to <code>false</code> to prevent the slider from animating to a new value with when calling <code>.val()</code>.</p>
 
       <div class="example" style="margin: 0; padding-bottom: 20px">
-        {{range-slider start=animate animate=true range=defaultRange}}
+        {{range-slider start=model.animate animate=true range=model.defaultRange}}
         <button {{action "animateValues"}}>Set sliders</button>
       </div>
 
       <div class="example" style="margin: 0;">
-        {{range-slider start=animate animate=false range=defaultRange}}
+        {{range-slider start=model.animate animate=false range=model.defaultRange}}
       </div>
 
       <div class="options">
@@ -255,13 +255,13 @@
 
     <div class="side">
       {{#source-code language="handlebars"}}
-\{{range-slider start=animate
+\{{range-slider start=model.animate
                animate=true
-               range=defaultRange}}
+               range=model.defaultRange}}
 
-\{{range-slider start=animate
+\{{range-slider start=model.animate
                animate=false
-               range=defaultRange}}
+               range=model.defaultRange}}
       {{/source-code}}
     </div>
   </section>
