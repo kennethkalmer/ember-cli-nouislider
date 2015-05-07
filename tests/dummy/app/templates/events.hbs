@@ -1,0 +1,131 @@
+{{ partial "navigation" }}
+
+<div class="content">
+  <h1>Events</h1>
+
+  <section>
+    <div class="view-more">
+      <p>
+        The range-slider component can send two actions to your route when a
+        user interacts with the slider. By default it will send an <em>changed</em>
+        action. You can also pass an action for when a user is sliding the
+        control.
+      </p>
+
+      <div class="example">
+        {{range-slider start=model.start range=model.range slide="slide"}}
+        <div class="logger">
+          <div class="l-slider {{if model.sliding 'tShow'}}">Slide</div>
+          <div class="l-changes {{if model.changed 'tShow'}}">Change</div>
+        </div>
+        <div class="logger">
+          <input type="text" value="{{model.value}}">
+        </div>
+      </div>
+      <table class="data-table events-table">
+        <thead>
+          <tr>
+            <th>&nbsp;</th>
+            <th width="90">Slide</th>
+            <th width="90">Change</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span>A handle is <strong>released</strong> after dragging</span></td>
+            <td class="no"><span>No</span></td>
+            <td class="yes"><span>Yes</span></td>
+          </tr>
+          <tr>
+            <td><span>A slider is moved by <strong>tapping</strong> it</span></td>
+            <td class="yes"><span>Yes</span></td>
+            <td class="yes"><span>Yes</span></td>
+          </tr>
+          <tr>
+            <td><span>A handle moves while <strong>dragging</strong></span></td>
+            <td class="yes"><span>Yes</span></td>
+            <td class="no"><span>No</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="side">
+      {{#source-code language="handlebars"}}
+\{{range-slider start=model.start
+                range=model.range
+                slide="slide"}}
+      {{/source-code}}
+
+      {{#source-code language="javascript"}}
+// app/routes/eventful.js
+export default Ember.Route.extend({
+  actions: {
+    change: function(val) {
+      // change event
+    },
+    slide: function(val) {
+      // sliding
+    }
+  }
+});
+      {{/source-code}}
+    </div>
+  </section>
+
+  <a href="#section-change" id="section-change" class="sect">&sect;</a><h2>Change</h2>
+  <section>
+    <div class="view">
+      <p>
+        This action is great when you use the slider as 'just-another-input-type'.
+      </p>
+      <p>
+        The name of the action can be changed from the default <em>change</em>
+        by passing a different action name to the <em>change</em> parameter
+      </p>
+    </div>
+    <div class="side">
+      {{#source-code language="handlebars"}}
+\{{range-slider change="myAction"}}
+      {{/source-code}}
+      {{#source-code language="javascript"}}
+export default Ember.Route.extend({
+  actions: {
+    myAction: function(val) {
+      // ...
+    }
+  }
+});
+      {{/source-code}}
+    </div>
+  </section>
+
+  <a href="#section-slide" id="section-slide" class="sect">&sect;</a><h2>Slide</h2>
+  <section>
+    <div class="view">
+      <p>
+        This action is useful when you want to update a value or perform an
+        action every time a handle is dragged. For example, you can use the
+        'slide' action to update graphs. For convenience, this function also
+        fires on a change by 'tap'.
+      </p>
+      <p>
+        By default no actions are sent, you need to explicitly specify an action
+        name by setting the <em>slide</em> property.
+      </p>
+    </div>
+    <div class="side">
+      {{#source-code language="handlebars"}}
+\{{range-slider slide="slidingAction"}}
+      {{/source-code}}
+      {{#source-code language="javascript"}}
+export default Ember.Route.extend({
+  actions: {
+    slidingAction: function(val) {
+      // ...
+    }
+  }
+});
+      {{/source-code}}
+    </div>
+  </section>
+</div>

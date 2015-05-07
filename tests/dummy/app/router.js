@@ -9,6 +9,7 @@ Router.map(function() {
   this.route('download');
   this.route('component');
   this.route('options');
+  this.route('events');
 });
 
 export default Router;
