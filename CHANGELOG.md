@@ -1,5 +1,8 @@
 ## master
 
+* Allow changing the name of the _change_ action
+* Allow specifying an action for when sliding (#3)
+
 ## 0.3.0 2015-04-17
 
 * Now works with prototype extensions disabled
