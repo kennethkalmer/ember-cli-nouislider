@@ -1,5 +1,7 @@
 ## master
 
+## 0.4.0 2015-05-09
+
 * Allow changing the name of the _change_ action
 * Allow specifying an action for when sliding (#3)
 
