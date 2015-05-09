@@ -63,12 +63,16 @@ export default Ember.Route.extend({
 });
 ```
 
+See the [documentation](https://kennethkalmer.github.com/ember-cli-nouislider/)
+for more actions.
+
 ## Configuration
 
 The component has a lot of configurable options, most of them mapping directly
 to the [original options](http://refreshless.com/nouislider/slider-options/).
 To see how the slider is initialized internally, please have a look at
-`app/components/range-slider.js` in this project.
+`app/components/range-slider.js` in this project, or browse through the
+[documentation](https://kennethkalmer.github.com/ember-cli-nouislider).
 
 ## Contributing or running locally
 
