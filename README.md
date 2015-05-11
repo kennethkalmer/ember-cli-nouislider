@@ -14,6 +14,12 @@ To get started simply install the addon:
 $ ember install:addon ember-cli-nouislider
 ```
 
+or with the new cli version simply use:
+
+```
+$ ember install ember-cli-nouislider
+```
+
 This will install `nouislider` via Bower, and will include it into your application's
 mergetree, so you don't need to worry about anything there.
 
