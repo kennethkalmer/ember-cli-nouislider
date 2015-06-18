@@ -36,8 +36,7 @@ export default Ember.Component.extend({
     });
 
     var _this        = this,
-        elem         = this.$(),
-        slideAction  = this.get('slide');
+        elem         = this.$();
 
     elem.on("change", function() {
       Ember.run(function () {
@@ -45,7 +44,7 @@ export default Ember.Component.extend({
       });
     });
 
-    if ( !Ember.isEmpty(slideAction) ) {
+    if ( !Ember.isEmpty(this.get('slide')) ) {
       elem.on("slide", function() {
         Ember.run(function () {
           _this.sendAction('slide', _this.slider.val());
