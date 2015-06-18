@@ -10,9 +10,18 @@ on jQuery, _not jQueryUI_).
 
 To get started simply install the addon:
 
+Using the ember-cli >= 0.2.3:
+
+```
+$ ember install ember-cli-nouislider
+```
+
+If using ember-cli 0.1.5 – <0.2.3:
+
 ```
 $ ember install:addon ember-cli-nouislider
 ```
+
 
 This will install `nouislider` via Bower, and will include it into your application's
 mergetree, so you don't need to worry about anything there.

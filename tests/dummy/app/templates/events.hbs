@@ -7,13 +7,14 @@
     <div class="view-more">
       <p>
         The range-slider component can send two actions to your route when a
-        user interacts with the slider. By default it will send an <em>changed</em>
-        action. You can also pass an action for when a user is sliding the
+        user interacts with the slider. You can set <em>changed</em> to an
+        action that will be called when sliding has stopped, or you can
+        set <em>slide</em> to an action for when a user is sliding the
         control.
       </p>
 
       <div class="example">
-        {{range-slider start=model.start range=model.range slide="slide"}}
+        {{range-slider start=model.start range=model.range change="change" slide="slide"}}
         <div class="logger">
           <div class="l-slider {{if model.sliding 'tShow'}}">Slide</div>
           <div class="l-changes {{if model.changed 'tShow'}}">Change</div>
@@ -53,7 +54,8 @@
       {{#source-code language="handlebars"}}
 \{{range-slider start=model.start
                 range=model.range
-                slide="slide"}}
+                slide="slide"
+                change="changed"}}
       {{/source-code}}
 
       {{#source-code language="javascript"}}
@@ -79,8 +81,8 @@ export default Ember.Route.extend({
         This action is great when you use the slider as 'just-another-input-type'.
       </p>
       <p>
-        The name of the action can be changed from the default <em>change</em>
-        by passing a different action name to the <em>change</em> parameter
+        The name of the action can be changed
+        by passing an action name to the <em>change</em> parameter
       </p>
     </div>
     <div class="side">

@@ -36,17 +36,19 @@ export default Ember.Component.extend({
     });
 
     var _this        = this,
-        elem         = this.$(),
-        changeAction = this.getWithDefault('change', 'change'),
-        slideAction  = this.get('slide');
+        elem         = this.$();
 
     elem.on("change", function() {
-      _this.sendAction( changeAction, _this.slider.val() );
+      Ember.run(function () {
+        _this.sendAction('change', _this.slider.val());
+      });
     });
 
-    if ( !Ember.isEmpty(slideAction) ) {
+    if ( !Ember.isEmpty(this.get('slide')) ) {
       elem.on("slide", function() {
-        _this.sendAction( slideAction, _this.slider.val() );
+        Ember.run(function () {
+          _this.sendAction('slide', _this.slider.val());
+        });
       });
     }
   },
