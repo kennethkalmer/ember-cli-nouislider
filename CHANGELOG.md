@@ -1,5 +1,9 @@
 ## master
 
+## 0.4.1 2015-06-19
+
+* Fixed an issue with actions not being called correctly (#6)
+
 ## 0.4.0 2015-05-09
 
 * Allow changing the name of the _change_ action
