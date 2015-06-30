@@ -42,8 +42,13 @@ module.exports = function(environment) {
   if (environment === 'production') {
     // For github pages
     ENV.baseURL = '/ember-cli-nouislider';
-    ENV.locationType = 'hash'
+    ENV.locationType = 'hash';
   }
+
+  ENV.contentSecurityPolicy = {
+    'font-src': "'self' 'unsafe-inline' http://fonts.gstatic.com",
+    'style-src': "'self' 'unsafe-inline' http://fonts.googleapis.com"
+  };
 
   return ENV;
 };

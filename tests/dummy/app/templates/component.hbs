@@ -5,43 +5,9 @@
   <section>
     <div class="double">
       <p>
-        Due to the way ember-cli addons work, you'll need to generate your own
-        <em>range-slider</em> component, inheriting from the component shipped
-        with the addon.
-      </p>
-      <p>
         Ensure you've already {{#link-to 'download'}}downloaded &amp; installed{{/link-to}}
         the addon
       </p>
-    </div>
-  </section>
-
-  <a href="#section-generate" id="section-generate" class="sect">§</a>
-  <h2>Generate</h2>
-  <section>
-    <div class="view">
-      <p>Generate your own range-slider component using ember-cli.</p>
-    </div>
-    <div class="side">
-      <pre>
-$ ember g component range-slider
-      </pre>
-    </div>
-  </section>
-
-  <a href="#section-extend" id="section-extend" class="sect">§</a>
-  <h2>Extend</h2>
-  <section>
-    <div class="view">
-      <p>Change your generate component to extend the range-slider component</p>
-    </div>
-    <div class="side">
-      {{#source-code language="javascript"}}
-// app/components/range-slider.js
-import RangeSlider from 'ember-cli-nouislider/components/range-slider';
-
-export default RangeSlider.extend({});
-      {{/source-code}}
     </div>
   </section>
 
@@ -64,7 +30,7 @@ export default RangeSlider.extend({});
   <section>
     <div class="view">
       <p>
-        Lastly, setup an action handler in your route to catch
+        Setup an action handler in your route to catch
         any changes to the slider values.
       </p>
     </div>

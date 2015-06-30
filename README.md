@@ -33,7 +33,9 @@ to get a feel for how to use it.
 
 ## Component
 
-Once the installation is done, you'll need to generate your own component and re-export
+You have the opportunity to customize if needed.
+
+To do this, generate your own component and re-export
 the one provided:
 
 ```
@@ -46,8 +48,6 @@ import RangeSlider from 'ember-cli-nouislider/components/range-slider';
 
 export default RangeSlider;
 ```
-
-You have the opportunity to customize if needed.
 
 Include the slider into your views like this:
 
