@@ -1,6 +1,8 @@
 import Ember from 'ember';
+import noUiSlider from 'noUiSlider';
 
 export default Ember.Component.extend({
+  slider:       null,
 
   start:        undefined,
   step:         undefined,
@@ -22,7 +24,9 @@ export default Ember.Component.extend({
   }),
 
   didInsertElement: function() {
-    this.slider = this.$().noUiSlider({
+    let $this = this.$().get(0);
+
+    noUiSlider.create($this, {
       start:       this.get('start'),
       step:        this.get('step'),
       margin:      this.get('margin'),
@@ -35,32 +39,34 @@ export default Ember.Component.extend({
       animate:     this.get('animate')
     });
 
-    var _this        = this,
-        elem         = this.$();
+    let slider = $this.noUiSlider;
+    this.set('slider', slider);
 
-    elem.on("change", function() {
-      Ember.run(function () {
-        _this.sendAction('change', _this.slider.val());
+    slider.on("change", () => {
+      Ember.run(this, function () {
+        this.sendAction('change', this.get('slider').get());
       });
     });
 
     if ( !Ember.isEmpty(this.get('slide')) ) {
-      elem.on("slide", function() {
-        Ember.run(function () {
-          _this.sendAction('slide', _this.slider.val());
+      slider.on("slide", () => {
+        Ember.run(this, function () {
+          this.sendAction('slide', this.get('slider').get());
         });
       });
     }
   },
 
   willDestroyElement: function() {
-    this.slider[0].destroy();
+    this.get('slider').destroy();
   },
 
   setVal: Ember.observer('start', function() {
-    if (this.slider) {
+    let slider = this.get('slider');
+
+    if (slider) {
       var val = this.get('start');
-      this.slider.val( val );
+      slider.set( val );
     }
   })
 });
