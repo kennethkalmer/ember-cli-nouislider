@@ -1,5 +1,13 @@
 ## master
 
+## 0.5.0 2015-07-02
+
+* Upgrade to nouislider 8.0.1 (#10 - @blimmer)
+* Documentation improvements (#10 - @blimmer)
+* Toolchain upgrades and tlc (#10 - @blimmer)
+
+Thanks Ben Limmer for doing all this work!
+
 ## 0.4.2 2015-07-02
 
 * Pin nouislider dependency at 7.0.0 (#9 - @blimmer)
