@@ -1,5 +1,9 @@
 ## master
 
+## 0.4.2 2015-07-02
+
+* Pin nouislider dependency at 7.0.0 (#9 - @blimmer)
+
 ## 0.4.1 2015-06-19
 
 * Fixed an issue with actions not being called correctly (#6)
