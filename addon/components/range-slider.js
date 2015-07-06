@@ -6,6 +6,7 @@ export default Ember.Component.extend({
 
   start:        undefined,
   step:         undefined,
+  snap:         false,
   margin:       undefined,
   limit:        undefined,
   connect:      false,
@@ -39,6 +40,7 @@ export default Ember.Component.extend({
     noUiSlider.create($this, {
       start:       this.get('start'),
       step:        this.get('step'),
+      snap:        this.get('snap'),
       margin:      this.get('margin'),
       limit:       this.get('limit'),
       range:       this.get('range'),
