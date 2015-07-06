@@ -13,6 +13,7 @@ export default Ember.Component.extend({
   direction:    "ltr",
   behaviour:    "tap",
   animate:      true,
+  pips:         undefined,
 
   min: 0,
   max: 100,
@@ -20,6 +21,15 @@ export default Ember.Component.extend({
     return {
       min: this.get('min'),
       max: this.get('max')
+    };
+  }),
+
+  formatTo:       function(value) { return value; },
+  formatFrom:     function(value) { return value; },
+  format: Ember.computed("formatTo", "formatFrom", function() {
+    return {
+      to: this.get('formatTo'),
+      from: this.get('formatFrom')
     };
   }),
 
@@ -36,7 +46,9 @@ export default Ember.Component.extend({
       orientation: this.get('orientation'),
       direction:   this.get('direction'),
       behaviour:   this.get('behaviour'),
-      animate:     this.get('animate')
+      animate:     this.get('animate'),
+      format:      this.get('format'),
+      pips:        this.get('pips')
     });
 
     let slider = $this.noUiSlider;
