@@ -1,5 +1,11 @@
 ## master
 
+## 0.6.0 2015-07-09 - (Happy Birthday To Me)
+
+* Add demoURL to package.json
+* Use events instead of listeners (#14 - @knowasilya)
+* Add "formats" & "pips" suppor (#13 - @davidgoli)
+
 ## 0.5.0 2015-07-02
 
 * Upgrade to nouislider 8.0.1 (#10 - @blimmer)
