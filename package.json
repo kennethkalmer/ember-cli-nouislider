@@ -47,6 +47,7 @@
     "ember-cli-htmlbars": "0.7.6"
   },
   "ember-addon": {
-    "configPath": "tests/dummy/config"
+    "configPath": "tests/dummy/config",
+    "demoURL": "http://kennethkalmer.github.com/ember-cli-nouislider"
   }
 }
