@@ -1,86 +1,92 @@
 import Ember from 'ember';
 import noUiSlider from 'noUiSlider';
 
+const {
+  on,
+  run,
+  isEmpty,
+  computed,
+  observer
+} = Ember;
+
 export default Ember.Component.extend({
   slider:       null,
-
   start:        undefined,
   step:         undefined,
-  snap:         false,
   margin:       undefined,
   limit:        undefined,
-  connect:      false,
-  orientation:  "horizontal",
-  direction:    "ltr",
-  behaviour:    "tap",
-  animate:      true,
   pips:         undefined,
+  animate:      true,
+  snap:         false,
+  connect:      false,
+  orientation:  'horizontal',
+  direction:    'ltr',
+  behaviour:    'tap',
 
   min: 0,
   max: 100,
-  range: Ember.computed("min", "max", function() {
+
+  range: computed('min', 'max', function() {
     return {
       min: this.get('min'),
       max: this.get('max')
     };
   }),
 
-  formatTo:       function(value) { return value; },
-  formatFrom:     function(value) { return value; },
-  format: Ember.computed("formatTo", "formatFrom", function() {
+  formatTo(value) { return value; },
+  formatFrom(value) { return value; },
+
+  format: computed('formatTo', 'formatFrom', function() {
     return {
       to: this.get('formatTo'),
       from: this.get('formatFrom')
     };
   }),
 
-  didInsertElement: function() {
+  setup: on('didInsertElement', function() {
     let $this = this.$().get(0);
+    let properties = this.getProperties(
+      'start', 'step', 'margin',
+      'limit', 'range', 'connect',
+      'orientation', 'direction',
+      'behaviour', 'animate'
+    );
 
-    noUiSlider.create($this, {
-      start:       this.get('start'),
-      step:        this.get('step'),
-      snap:        this.get('snap'),
-      margin:      this.get('margin'),
-      limit:       this.get('limit'),
-      range:       this.get('range'),
-      connect:     this.get('connect'),
-      orientation: this.get('orientation'),
-      direction:   this.get('direction'),
-      behaviour:   this.get('behaviour'),
-      animate:     this.get('animate'),
-      format:      this.get('format'),
-      pips:        this.get('pips')
-    });
+    noUiSlider.create($this, properties);
 
     let slider = $this.noUiSlider;
     this.set('slider', slider);
 
-    slider.on("change", () => {
-      Ember.run(this, function () {
+    slider.on('change', () => {
+      run(this, function () {
         this.sendAction('change', this.get('slider').get());
       });
     });
 
-    if ( !Ember.isEmpty(this.get('slide')) ) {
-      slider.on("slide", () => {
-        Ember.run(this, function () {
+    if (!isEmpty(this.get('slide'))) {
+      slider.on('slide', () => {
+        run(this, function () {
           this.sendAction('slide', this.get('slider').get());
         });
       });
     }
-  },
+  }),
 
-  willDestroyElement: function() {
-    this.get('slider').destroy();
-  },
+  teardown: on('willDestroyElement', function() {
+    var slider = this.get('slider');
 
-  setVal: Ember.observer('start', function() {
+    slider.off('change');
+    slider.off('slide');
+
+    slider.destroy();
+  }),
+
+  setVal: observer('start', function() {
     let slider = this.get('slider');
 
     if (slider) {
       var val = this.get('start');
-      slider.set( val );
+      slider.set(val);
     }
   })
 });
