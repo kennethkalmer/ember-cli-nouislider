@@ -13,6 +13,6 @@
     "qunit": "~1.17.1"
   },
   "devDependencies": {
-    "nouislider": "~8.0.0"
+    "nouislider": "~8.0.1"
   }
 }
