@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/kennethkalmer/ember-cli-nouislider.png)](https://travis-ci.org/kennethkalmer/ember-cli-nouislider)
 [![npm version](https://badge.fury.io/js/ember-cli-nouislider.svg)](http://badge.fury.io/js/ember-cli-nouislider)
+[![Code Climate](https://codeclimate.com/github/kennethkalmer/ember-cli-nouislider/badges/gpa.svg)](https://codeclimate.com/github/kennethkalmer/ember-cli-nouislider)
 
 This ember-cli addon provides you with a range-slider component, based on
 [noUiSlider](http://refreshless.com/nouislider). It includes everything you need,

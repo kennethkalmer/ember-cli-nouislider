@@ -1,5 +1,10 @@
 ## master
 
+* Add CodeClimate badge to README
+* Update ember-cli to 1.13.8, ember.js to 1.13.7
+* Bring back 'format' (#19 - @knownasilya)
+* Bring back 'snap' and 'pips' (#18 - @kbullaughey)
+
 ## 0.6.0 2015-07-09 - (Happy Birthday To Me)
 
 * Add demoURL to package.json
