@@ -49,7 +49,8 @@ export default Ember.Component.extend({
       'start', 'step', 'margin',
       'limit', 'range', 'connect',
       'orientation', 'direction',
-      'behaviour', 'animate'
+      'behaviour', 'animate', 'snap',
+      'pips'
     );
 
     noUiSlider.create($this, properties);
