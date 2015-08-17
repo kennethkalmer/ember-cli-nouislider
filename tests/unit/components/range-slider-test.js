@@ -28,7 +28,6 @@ test('it added a slider', function(assert) {
   assert.expect(1);
 
   // create and render the component
-  var component = this.subject();
   this.render();
 
   assert.ok(!this.$().is(":empty"), "component is not empty");
