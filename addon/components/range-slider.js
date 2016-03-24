@@ -64,6 +64,12 @@ export default Ember.Component.extend({
       });
     });
 
+    slider.on('set', () => {
+      run(this, function () {
+        this.sendAction('set', this.get('slider').get());
+      });
+    });
+
     if (!isEmpty(this.get('slide'))) {
       slider.on('slide', () => {
         run(this, function () {
