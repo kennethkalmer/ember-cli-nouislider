@@ -1,5 +1,7 @@
 ## master
 
+* Bump nouislider to 8.3.0
+
 ## 0.8.1 2016-03-26
 
 * Deprecate the old events ("change" & "slide") in favor of "on-change" & "on-slide"
