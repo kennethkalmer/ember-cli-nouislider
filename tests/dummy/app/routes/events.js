@@ -8,30 +8,48 @@ export default Ember.Route.extend({
 
       changed: false,
       sliding: false,
+      updating: false,
+      beenSet: false,
+      started: false,
+      ended: false,
 
       value: [ 5, 15 ]
     });
   },
 
   actions: {
-    change: function(val) {
+    showEffect(property, val) {
       var model = this.modelFor("events");
       model.set('value', val);
-      model.set('changed', true);
+      model.set(property, true);
 
       Ember.run.later(model, function() {
-        this.set('changed', false);
+        this.set(property, false);
       }, 500);
     },
 
-    slide: function(val) {
-      var model = this.modelFor("events");
-      model.set('value', val);
-      model.set('sliding', true);
+    update(val) {
+      this.send("showEffect", "updating", val);
+    },
 
-      Ember.run.later(model, function() {
-        this.set('sliding', false);
-      }, 500);
+    change: function(val) {
+      this.send("showEffect", "changed", val);
+    },
+
+    setValue: function(val) {
+      this.send("showEffect", "beenSet", val);
+    },
+
+    slide: function(val) {
+      this.send("showEffect", "sliding", val);
+    },
+
+    started: function(val) {
+      this.send("showEffect", "started", val);
+    },
+
+    ended: function(val) {
+      this.send("showEffect", "ended", val);
     }
   }
 });

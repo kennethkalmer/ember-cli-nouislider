@@ -52,34 +52,37 @@ export default Ember.Component.extend({
       'behaviour', 'animate', 'snap',
       'pips', 'format'
     );
+    let sliderEvents = Ember.A(['change', 'set', 'slide', 'update', 'start', 'end']);
 
     noUiSlider.create($this, properties);
 
     let slider = $this.noUiSlider;
     this.set('slider', slider);
 
+    sliderEvents.forEach(event => {
+      if (!isEmpty(this.get(`on-${event}`))) {
+        slider.on(event, () => {
+          run(this, function() {
+            let val = this.get("slider").get();
+            this.sendAction(`on-${event}`, val);
+          });
+        });
+      }
+    });
+
+    /** DEPRECATED AND WILL BE REMOVED BEFORE 1.0 **/
     slider.on('change', () => {
       run(this, function () {
           let val = this.get("slider").get();
           this.sendDeprecatedAction("change", val);
-          this.sendAction("on-change", val);
       });
     });
 
-    if (!isEmpty(this.get('on-set'))) {
-      slider.on('set', () => {
-        run(this, function () {
-          this.sendAction('on-set', this.get('slider').get());
-        });
-      });
-    }
-
-    if (!isEmpty(this.get('on-slide')) || !isEmpty(this.get('slide'))) {
+    if (!isEmpty(this.get('slide'))) {
       slider.on('slide', () => {
         run(this, function () {
           let val = this.get("slider").get();
           this.sendDeprecatedAction('slide', val);
-          this.sendAction('on-slide', val);
         });
       });
     }
@@ -91,6 +94,9 @@ export default Ember.Component.extend({
     slider.off('change');
     slider.off('slide');
     slider.off('set');
+    slider.off('update');
+    slider.off('start');
+    slider.off('end');
 
     slider.destroy();
   }),

@@ -14,10 +14,14 @@
       </p>
 
       <div class="example">
-        {{range-slider start=model.start range=model.range on-change="change" on-slide="slide"}}
+        {{range-slider start=model.start range=model.range on-change="change" on-slide="slide" on-update="update" on-set="setValue" on-start="started" on-end="ended"}}
         <div class="logger">
+          <div class="l-update {{if model.updating 'tShow'}}">Update</div>
           <div class="l-slider {{if model.sliding 'tShow'}}">Slide</div>
+          <div class="l-set {{if model.beenSet 'tShow'}}">Set</div>
           <div class="l-changes {{if model.changed 'tShow'}}">Change</div>
+          <div class="l-start {{if model.started 'tShow'}}">Start</div>
+          <div class="l-end {{if model.ended 'tShow'}}">End</div>
         </div>
         <div class="logger">
           <input type="text" value="{{model.value}}">
@@ -27,23 +31,38 @@
         <thead>
           <tr>
             <th>&nbsp;</th>
-            <th width="90">on-slide</th>
-            <th width="90">on-change</th>
+            <th width="95">on-update</th>
+            <th width="85">on-slide</th>
+            <th width="85">on-set</th>
+            <th width="95">on-change</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><span>A handle is <strong>released</strong> after dragging</span></td>
+            <td class="yes"><span>Yes</span></td>
             <td class="no"><span>No</span></td>
+            <td class="yes"><span>Yes</span></td>
             <td class="yes"><span>Yes</span></td>
           </tr>
           <tr>
             <td><span>A slider is moved by <strong>tapping</strong> it</span></td>
             <td class="yes"><span>Yes</span></td>
             <td class="yes"><span>Yes</span></td>
+            <td class="yes"><span>Yes</span></td>
+            <td class="yes"><span>Yes</span></td>
           </tr>
           <tr>
             <td><span>A handle moves while <strong>dragging</strong></span></td>
+            <td class="yes"><span>Yes</span></td>
+            <td class="yes"><span>Yes</span></td>
+            <td class="no"><span>No</span></td>
+            <td class="no"><span>No</span></td>
+          </tr>
+          <tr>
+            <td><span>The <strong>.set()</strong> method is called</span></td>
+            <td class="yes"><span>Yes</span></td>
+            <td class="no"><span>No</span></td>
             <td class="yes"><span>Yes</span></td>
             <td class="no"><span>No</span></td>
           </tr>
@@ -55,18 +74,34 @@
 \{{range-slider start=model.start
                 range=model.range
                 on-slide="slide"
-                on-change="changed"}}
+                on-change="changed"
+                on-update="update"
+                on-set="setValue"
+                on-start="started"
+                on-end="ended"}}
       {{/source-code}}
 
       {{#source-code language="javascript"}}
 // app/routes/eventful.js
 export default Ember.Route.extend({
   actions: {
+    update: function(val) {
+      // updating
+    },
     changed: function(val) {
       // change event
     },
     slide: function(val) {
       // sliding
+    },
+    setValue: function(val) {
+      // set event
+    },
+    started: function(val) {
+      // sliding started
+    },
+    ended: function(val) {
+      // sliding ended
     }
   }
 });
