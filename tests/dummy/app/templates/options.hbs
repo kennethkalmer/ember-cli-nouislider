@@ -87,7 +87,7 @@
       <p>When using two handles, the minimum distance between the handles can be set using the margin option. The margin value is relative to the value set in 'range'. This option is only available on standard linear sliders.</p>
 
       <div class="example">
-        {{range-slider start=model.margins margin=30 range=model.defaultRange change="marginChanged"}}
+        {{range-slider start=model.margins margin=30 range=model.defaultRange on-change="marginChanged"}}
         <span class="example-val">{{marginMin}}</span>
         <span class="example-val">{{marginMax}}</span>
       </div>
@@ -116,7 +116,7 @@
     <div class="view">
       <p>The limit option is the oposite of the margin option, limiting the maximum distance between two handles. As with the margin option, the limit option can only be used on linear sliders.</p>
       <div class="example">
-        {{range-slider start=model.limits limit=40 behaviour="drag" connect=true range=model.defaultRange change="limitsChanged"}}
+        {{range-slider start=model.limits limit=40 behaviour="drag" connect=true range=model.defaultRange on-change="limitsChanged"}}
         <div id="slider-limit"></div>
         <span class="example-val">{{limitMin}}</span>
         <span class="example-val">{{limitMax}}</span>
@@ -206,7 +206,7 @@
       <p>By default the sliders are <em>top-to-bottom</em> and <em>left-to-right</em>, but you can change this using the direction option, which decides where the upper side of the slider is.</p>
 
       <div class="example">
-        {{range-slider start=model.direction direction="rtl" range=model.defaultRange change="directionChanged"}}
+        {{range-slider start=model.direction direction="rtl" range=model.defaultRange on-change="directionChanged"}}
         <span class="example-val">{{model.direction}}</span>
       </div>
 
