@@ -60,20 +60,26 @@ export default Ember.Component.extend({
 
     slider.on('change', () => {
       run(this, function () {
-        this.sendAction('change', this.get('slider').get());
+          let val = this.get("slider").get();
+          this.sendDeprecatedAction("change", val);
+          this.sendAction("on-change", val);
       });
     });
 
-    slider.on('set', () => {
-      run(this, function () {
-        this.sendAction('set', this.get('slider').get());
+    if (!isEmpty(this.get('on-set'))) {
+      slider.on('set', () => {
+        run(this, function () {
+          this.sendAction('on-set', this.get('slider').get());
+        });
       });
-    });
+    }
 
-    if (!isEmpty(this.get('slide'))) {
+    if (!isEmpty(this.get('on-slide')) || !isEmpty(this.get('slide'))) {
       slider.on('slide', () => {
         run(this, function () {
-          this.sendAction('slide', this.get('slider').get());
+          let val = this.get("slider").get();
+          this.sendDeprecatedAction('slide', val);
+          this.sendAction('on-slide', val);
         });
       });
     }
@@ -84,6 +90,7 @@ export default Ember.Component.extend({
 
     slider.off('change');
     slider.off('slide');
+    slider.off('set');
 
     slider.destroy();
   }),
@@ -95,5 +102,17 @@ export default Ember.Component.extend({
       var val = this.get('start');
       slider.set(val);
     }
-  })
+  }),
+
+  /**
+   * Perform a naive check to see if the deprecated action name exists in our
+   * attrs and then log a deprecation warning and trigger the old action.
+   */
+  sendDeprecatedAction(action, value) {
+    var actionName = this.get(`attrs.${action}`);
+    if(!isEmpty(actionName)) {
+      Ember.Logger.warn(`DEPRECATION (ember-cli-nouislider): "${action}" action is deprecated in favor of "on-${action}". Support for "${action}" will be dropped in 1.0`);
+      this.sendAction(action, value);
+    }
+  }
 });

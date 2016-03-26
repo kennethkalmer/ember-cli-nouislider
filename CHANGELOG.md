@@ -1,5 +1,7 @@
 ## master
 
+* Deprecate the old events ("change" & "slide") in favor of "on-change" & "on-slide"
+* Fix regression introduced by `set` action, now called `on-set`
 
 ## 0.8.0 2016-03-26
 
