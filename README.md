@@ -101,6 +101,7 @@ This section outlines the details of collaborating on this Ember addon.
 
 ## Running Tests
 
+* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
 * `ember test`
 * `ember test --server`
 
