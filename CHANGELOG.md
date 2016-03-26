@@ -1,5 +1,8 @@
 ## master
 
+
+## 0.8.0 2016-03-26
+
 * Bump nouislider to 8.0.2
 * Added nodejs 4 & 5 to Travis config, allow failures on Node 5
 * Upgrade ember-cli to 2.4.2
