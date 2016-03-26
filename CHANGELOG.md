@@ -1,5 +1,11 @@
 ## master
 
+* Bump nouislider to 8.0.2
+* Added nodejs 4 & 5 to Travis config, allow failures on Node 5
+* Upgrade ember-cli to 2.4.2
+* Added "set" action in order to use it in acceptance testing (#22 - @juliankmazo)
+* Include non-minified version of nouislider in development (#21 - @constantm)
+
 ## 0.7.0 2015-08-17
 
 * Add CodeClimate badge to README
