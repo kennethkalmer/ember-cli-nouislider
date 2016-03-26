@@ -7,14 +7,14 @@
     <div class="view-more">
       <p>
         The range-slider component can send two actions to your route when a
-        user interacts with the slider. You can set <em>changed</em> to an
+        user interacts with the slider. You can set <em>on-change</em> to an
         action that will be called when sliding has stopped, or you can
-        set <em>slide</em> to an action for when a user is sliding the
+        set <em>on-slide</em> to an action for when a user is sliding the
         control.
       </p>
 
       <div class="example">
-        {{range-slider start=model.start range=model.range change="change" slide="slide"}}
+        {{range-slider start=model.start range=model.range on-change="change" on-slide="slide"}}
         <div class="logger">
           <div class="l-slider {{if model.sliding 'tShow'}}">Slide</div>
           <div class="l-changes {{if model.changed 'tShow'}}">Change</div>
@@ -27,8 +27,8 @@
         <thead>
           <tr>
             <th>&nbsp;</th>
-            <th width="90">Slide</th>
-            <th width="90">Change</th>
+            <th width="90">on-slide</th>
+            <th width="90">on-change</th>
           </tr>
         </thead>
         <tbody>
@@ -54,15 +54,15 @@
       {{#source-code language="handlebars"}}
 \{{range-slider start=model.start
                 range=model.range
-                slide="slide"
-                change="changed"}}
+                on-slide="slide"
+                on-change="changed"}}
       {{/source-code}}
 
       {{#source-code language="javascript"}}
 // app/routes/eventful.js
 export default Ember.Route.extend({
   actions: {
-    change: function(val) {
+    changed: function(val) {
       // change event
     },
     slide: function(val) {
@@ -87,7 +87,7 @@ export default Ember.Route.extend({
     </div>
     <div class="side">
       {{#source-code language="handlebars"}}
-\{{range-slider change="myAction"}}
+\{{range-slider on-change="myAction"}}
       {{/source-code}}
       {{#source-code language="javascript"}}
 export default Ember.Route.extend({
@@ -112,12 +112,12 @@ export default Ember.Route.extend({
       </p>
       <p>
         By default no actions are sent, you need to explicitly specify an action
-        name by setting the <em>slide</em> property.
+        name by setting the <em>on-slide</em> property.
       </p>
     </div>
     <div class="side">
       {{#source-code language="handlebars"}}
-\{{range-slider slide="slidingAction"}}
+\{{range-slider on-slide="slidingAction"}}
       {{/source-code}}
       {{#source-code language="javascript"}}
 export default Ember.Route.extend({
