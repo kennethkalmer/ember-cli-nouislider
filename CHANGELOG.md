@@ -1,5 +1,8 @@
 ## master
 
+## 0.9.0 2016-04-14
+
+* Support for 'update', 'start' & 'end' events
 * Bump nouislider to 8.3.0
 
 ## 0.8.1 2016-03-26
