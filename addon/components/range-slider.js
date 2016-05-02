@@ -10,6 +10,7 @@ const {
 } = Ember;
 
 export default Ember.Component.extend({
+  attributeBindings: ['disabledOrUndefined:disabled'],
   slider:       null,
   start:        undefined,
   step:         undefined,
@@ -19,6 +20,7 @@ export default Ember.Component.extend({
   animate:      true,
   snap:         false,
   connect:      false,
+  disabled:     false,
   orientation:  'horizontal',
   direction:    'ltr',
   behaviour:    'tap',
@@ -110,6 +112,12 @@ export default Ember.Component.extend({
     }
   }),
 
+  // disabled can't be just `false` - this leads to an attribute of disabled="false"
+  disabledOrUndefined: Ember.computed('disabled', function() {
+    if (this.get('disabled')) {
+      return true;
+    }
+  }),
   /**
    * Perform a naive check to see if the deprecated action name exists in our
    * attrs and then log a deprecation warning and trigger the old action.
