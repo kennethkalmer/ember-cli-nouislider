@@ -14,14 +14,15 @@ module.exports = function(defaults) {
     behave. You most likely want to be modifying `./index.js` or app's build file
   */
 
-  app.import({
-    development: 'bower_components/nouislider/distribute/nouislider.js',
-    production:  'bower_components/nouislider/distribute/nouislider.min.js'
-  });
-  app.import("bower_components/nouislider/distribute/nouislider.min.css");
+  if(!process.env.EMBER_CLI_FASTBOOT) {
+    app.import({
+      development: 'bower_components/nouislider/distribute/nouislider.js',
+      production:  'bower_components/nouislider/distribute/nouislider.min.js'
+    });
+    app.import("bower_components/nouislider/distribute/nouislider.min.css");
 
-  app.import("vendor/prism.js");
-  app.import("vendor/prism.css");
-
+    app.import("vendor/prism.js");
+    app.import("vendor/prism.css");
+  }
   return app.toTree();
 };
