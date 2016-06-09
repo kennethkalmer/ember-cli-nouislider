@@ -7,8 +7,7 @@
 
 This ember-cli addon provides you with a range-slider component, based on
 [noUiSlider](http://refreshless.com/nouislider). It includes everything you need,
-and adds no extra dependencies other than noUiSlider itself (which only depends
-on jQuery, _not jQueryUI_).
+and adds no extra dependencies other than noUiSlider itself (which has no external dependencies).
 
 To get started simply install the addon:
 
