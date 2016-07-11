@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-nouislider",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Ember range-slider component powered by nouislider",
   "directories": {
     "doc": "doc",

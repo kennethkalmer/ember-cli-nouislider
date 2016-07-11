@@ -1,5 +1,10 @@
 ## master
 
+## 0.9.1 2016-07-11
+
+* Support for fastboot (#26 - @tschoartschi)
+* Documentation update (#29 - @sandstrom)
+
 ## 0.9.0 2016-04-14
 
 * Support for 'update', 'start' & 'end' events
