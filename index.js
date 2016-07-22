@@ -7,6 +7,12 @@ module.exports = {
   included: function(app) {
     this._super.included(app);
     if(!process.env.EMBER_CLI_FASTBOOT) {
+
+      // Fix for loading it in addons/engines
+      if (typeof app.import !== 'function' && app.app) {
+        app = app.app;
+      }
+
       app.import({
         development: app.bowerDirectory + '/nouislider/distribute/nouislider.js',
         production:  app.bowerDirectory + '/nouislider/distribute/nouislider.min.js'
