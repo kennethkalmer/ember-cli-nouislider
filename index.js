@@ -9,9 +9,7 @@ module.exports = {
     if(!process.env.EMBER_CLI_FASTBOOT) {
 
       // Fix for loading it in addons/engines
-      if (typeof app.import !== 'function' && app.app) {
-        app = app.app;
-      }
+      app = recursivelyFindApp(app);
 
       app.import({
         development: app.bowerDirectory + '/nouislider/distribute/nouislider.js',
@@ -25,3 +23,10 @@ module.exports = {
     }
   }
 };
+
+function recursivelyFindApp(app) {
+  if (app.import) {
+    return app;
+  }
+  return recursivelyFindApp(app.app);
+}
