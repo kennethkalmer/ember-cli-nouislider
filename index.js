@@ -6,27 +6,18 @@ module.exports = {
 
   included: function(app) {
     this._super.included(app);
-    if(!process.env.EMBER_CLI_FASTBOOT) {
+    if (!process.env.EMBER_CLI_FASTBOOT) {
+      var bowerDirectory = app.bowerDirectory || 'bower_components';
 
-      // Fix for loading it in addons/engines
-      app = recursivelyFindApp(app);
-
-      app.import({
-        development: app.bowerDirectory + '/nouislider/distribute/nouislider.js',
-        production:  app.bowerDirectory + '/nouislider/distribute/nouislider.min.js'
+      this.import({
+        development: bowerDirectory + '/nouislider/distribute/nouislider.js',
+        production: bowerDirectory + '/nouislider/distribute/nouislider.min.js'
       });
-      app.import(app.bowerDirectory + '/nouislider/distribute/nouislider.min.css');
+      this.import(bowerDirectory + '/nouislider/distribute/nouislider.min.css');
 
-      app.import('vendor/nouislider/shim.js', {
+      this.import('vendor/nouislider/shim.js', {
         exports: { 'noUiSlider': ['default'] }
       });
     }
   }
 };
-
-function recursivelyFindApp(app) {
-  if (app.import) {
-    return app;
-  }
-  return recursivelyFindApp(app.app);
-}
