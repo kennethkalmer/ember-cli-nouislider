@@ -7,15 +7,18 @@ module.exports = {
   included: function(app) {
     this._super.included(app);
     if (!process.env.EMBER_CLI_FASTBOOT) {
+      // In nested addons, app.bowerDirectory might not be available
       var bowerDirectory = app.bowerDirectory || 'bower_components';
+      // In ember-cli < 2.7, this.import is not available, so fall back to use app.import
+      var importShim = typeof this.import !== 'undefined' ? this : app;
 
-      this.import({
+      importShim.import({
         development: bowerDirectory + '/nouislider/distribute/nouislider.js',
         production: bowerDirectory + '/nouislider/distribute/nouislider.min.js'
       });
-      this.import(bowerDirectory + '/nouislider/distribute/nouislider.min.css');
+      importShim.import(bowerDirectory + '/nouislider/distribute/nouislider.min.css');
 
-      this.import('vendor/nouislider/shim.js', {
+      importShim.import('vendor/nouislider/shim.js', {
         exports: { 'noUiSlider': ['default'] }
       });
     }
