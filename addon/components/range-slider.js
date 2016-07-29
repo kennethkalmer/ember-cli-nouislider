@@ -10,18 +10,18 @@ const {
 } = Ember;
 
 export default Ember.Component.extend({
-  slider:       null,
-  start:        undefined,
-  step:         undefined,
-  margin:       undefined,
-  limit:        undefined,
-  pips:         undefined,
-  animate:      true,
-  snap:         false,
-  connect:      false,
-  orientation:  'horizontal',
-  direction:    'ltr',
-  behaviour:    'tap',
+  slider: null,
+  start: undefined,
+  step: undefined,
+  margin: undefined,
+  limit: undefined,
+  pips: undefined,
+  animate: true,
+  snap: false,
+  connect: false,
+  orientation: 'horizontal',
+  direction: 'ltr',
+  behaviour: 'tap',
 
   min: 0,
   max: 100,
@@ -33,8 +33,12 @@ export default Ember.Component.extend({
     };
   }),
 
-  formatTo(value) { return value; },
-  formatFrom(value) { return value; },
+  formatTo(value) {
+    return value;
+  },
+  formatFrom(value) {
+    return value;
+  },
 
   format: computed('formatTo', 'formatFrom', function() {
     return {
@@ -54,7 +58,9 @@ export default Ember.Component.extend({
     );
     let sliderEvents = Ember.A(['change', 'set', 'slide', 'update', 'start', 'end']);
 
-    noUiSlider.create($this, properties);
+    if (!this.get('slider')) {
+      noUiSlider.create($this, properties);
+    }
 
     let slider = $this.noUiSlider;
     this.set('slider', slider);
@@ -72,15 +78,15 @@ export default Ember.Component.extend({
 
     /** DEPRECATED AND WILL BE REMOVED BEFORE 1.0 **/
     slider.on('change', () => {
-      run(this, function () {
-          let val = this.get("slider").get();
-          this.sendDeprecatedAction("change", val);
+      run(this, function() {
+        let val = this.get("slider").get();
+        this.sendDeprecatedAction("change", val);
       });
     });
 
     if (!isEmpty(this.get('slide'))) {
       slider.on('slide', () => {
-        run(this, function () {
+        run(this, function() {
           let val = this.get("slider").get();
           this.sendDeprecatedAction('slide', val);
         });
@@ -116,7 +122,7 @@ export default Ember.Component.extend({
    */
   sendDeprecatedAction(action, value) {
     var actionName = this.get(`attrs.${action}`);
-    if(!isEmpty(actionName)) {
+    if (!isEmpty(actionName)) {
       Ember.Logger.warn(`DEPRECATION (ember-cli-nouislider): "${action}" action is deprecated in favor of "on-${action}". Support for "${action}" will be dropped in 1.0`);
       this.sendAction(action, value);
     }
