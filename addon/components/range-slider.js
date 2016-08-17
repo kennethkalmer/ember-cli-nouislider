@@ -87,7 +87,7 @@ export default Ember.Component.extend({
     }
   },
 
-  teardown () {
+  teardown() {
     var slider = this.get('slider');
 
     slider.off('change');
