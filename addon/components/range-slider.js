@@ -2,7 +2,6 @@ import Ember from 'ember';
 import noUiSlider from 'noUiSlider';
 
 const {
-  on,
   run,
   isEmpty,
   computed,
@@ -43,7 +42,7 @@ export default Ember.Component.extend({
     };
   }),
 
-  setup: on('didInsertElement', function() {
+  setup() {
     let $this = this.$().get(0);
     let properties = this.getProperties(
       'start', 'step', 'margin',
@@ -86,9 +85,9 @@ export default Ember.Component.extend({
         });
       });
     }
-  }),
+  },
 
-  teardown: on('willDestroyElement', function() {
+  teardown () {
     var slider = this.get('slider');
 
     slider.off('change');
@@ -99,7 +98,15 @@ export default Ember.Component.extend({
     slider.off('end');
 
     slider.destroy();
-  }),
+  },
+
+  didInsertElement() {
+    this.setup();
+  },
+
+  willDestroyElement() {
+    this.teardown();
+  },
 
   setVal: observer('start', function() {
     let slider = this.get('slider');
