@@ -1,5 +1,7 @@
 ## master
 
+## 0.10.0 2016-10-03
+
 * Bump to Ember 2.8.0 LTS
 * BETA support for tooltips (#35 - michalsnik)
 * Bump nouislider to 8.5.0
