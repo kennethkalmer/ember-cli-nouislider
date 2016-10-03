@@ -1,5 +1,6 @@
 ## master
 
+* Bump nouislider to 8.5.0
 * Support for the 'disabled' attribute (#25 - @alexspeller)
 
 ## 0.9.1 2016-07-11
