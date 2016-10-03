@@ -24,6 +24,7 @@ export default Ember.Component.extend({
   orientation:  'horizontal',
   direction:    'ltr',
   behaviour:    'tap',
+  tooltips:     false,
 
   min: 0,
   max: 100,
@@ -52,7 +53,7 @@ export default Ember.Component.extend({
       'limit', 'range', 'connect',
       'orientation', 'direction',
       'behaviour', 'animate', 'snap',
-      'pips', 'format'
+      'pips', 'format', 'tooltips'
     );
     let sliderEvents = Ember.A(['change', 'set', 'slide', 'update', 'start', 'end']);
 
