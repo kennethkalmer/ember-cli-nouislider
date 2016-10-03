@@ -85,17 +85,18 @@ This section outlines the details of collaborating on this Ember addon.
 ### Installing dependencies
 
 * `git clone https://github.com/kennethkalmer/ember-cli-nouislider`
+* `cd ember-cli-nouislider`
 * `npm install`
 * `bower install`
 
 ## Running
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+* `ember serve`
+* Visit your app at [http://localhost:4200](http://localhost:4200).
 
 ## Running Tests
 
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
+* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
 * `ember test`
 * `ember test --server`
 
@@ -103,4 +104,4 @@ This section outlines the details of collaborating on this Ember addon.
 
 * `ember build`
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
