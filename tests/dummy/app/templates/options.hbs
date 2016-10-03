@@ -171,6 +171,35 @@
     </div>
   </section>
 
+  <a href="#section-disabled" id="section-disabled" class="sect">&sect;</a><h2>Disable</h2>
+  <section>
+    <div class="view">
+
+      <p>Set the disable option to <code>true</code> to disable the slider.</p>
+
+      <div class="example" style="margin: 0; padding-bottom: 20px">
+        {{range-slider start=model.defaultStart disabled=model.disabled range=model.defaultRange}}
+        <button {{action "disableSlider"}}>Disable sliders</button>
+      </div>
+
+      <div class="options">
+        <strong>Default</strong>
+        <div><code>false</code></div>
+
+        <strong>Accepted values</strong>
+        <div><code>true</code>, <code>false</code></div>
+      </div>
+    </div>
+
+    <div class="side">
+      {{#source-code language="handlebars"}}
+\{{range-slider start=model.defaultStart
+               disabled=model.disabled
+               range=model.defaultRange}}
+      {{/source-code}}
+    </div>
+  </section>
+
   <a href="#section-orientation" id="section-orientation" class="sect">&sect;</a><h2>Orientation</h2>
   <section>
     <div class="view">

@@ -1,5 +1,7 @@
 ## master
 
+* Support for the 'disabled' attribute (#25 - @alexspeller)
+
 ## 0.9.1 2016-07-11
 
 * Support for fastboot (#26 - @tschoartschi)

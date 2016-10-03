@@ -11,6 +11,7 @@ export default Ember.Route.extend({
       steps: [ 20, 80 ],
       direction: 20,
       animate: 20,
+      disabled: false
     });
   },
 
@@ -33,6 +34,11 @@ export default Ember.Route.extend({
     animateValues: function() {
       var model = this.modelFor("options");
       model.set('animate', 60);
+    },
+
+    disableSlider: function() {
+      var model = this.modelFor("options");
+      model.toggleProperty("disabled");
     }
   }
 });
