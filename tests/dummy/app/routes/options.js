@@ -11,7 +11,8 @@ export default Ember.Route.extend({
       steps: [ 20, 80 ],
       direction: 20,
       animate: 20,
-      disabled: false
+      disabled: false,
+      tooltips: [false, {to: (num) => { return Math.floor(num); }}]
     });
   },
 

@@ -293,4 +293,41 @@
       {{/source-code}}
     </div>
   </section>
+
+  <a href="#section-tooltips" id="section-tooltips" class="sect">&sect;</a><h2>Tooltips</h2>
+  <section>
+    <div class="view">
+
+        <p>noUiSlider can provide a basic tooltip without using its events system. Set the tooltips option to <code>true</code> to enable. This option can also accept formatting options to format the tooltips content. In that case, pass an <code>array</code> with a formatter for each handle, <code>true</code> to use the default or <code>false</code> to display no tooltip.</p>
+
+      <div class="example" style="margin: 0; padding-bottom: 20px">
+        {{range-slider start=model.defaultStart tooltips=true range=model.defaultRange}}
+      </div>
+
+      <div class="example" style="margin: 0;">
+        {{range-slider start=model.defaultStart tooltips=model.tooltips range=model.defaultRange}}
+      </div>
+
+      <div class="options">
+        <strong>Default</strong>
+        <div><code>false</code></div>
+
+        <strong>Accepted values</strong>
+        <div><code>true</code>, <code>false</code>, <code>formatter</code></div>
+        <div><code>array[formatter or false]</code></div>
+      </div>
+    </div>
+
+    <div class="side">
+      {{#source-code language="handlebars"}}
+\{{range-slider start=model.defaultStart
+               tooltips=true
+               range=model.defaultRange}}
+
+\{{range-slider start=model.defaultStart
+               tooltips=model.tooltips
+               range=model.defaultRange}}
+      {{/source-code}}
+    </div>
+  </section>
 </div>

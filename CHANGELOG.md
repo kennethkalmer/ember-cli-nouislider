@@ -1,5 +1,6 @@
 ## master
 
+* BETA support for tooltips (#35 - michalsnik)
 * Bump nouislider to 8.5.0
 * Support for the 'disabled' attribute (#25 - @alexspeller)
 
