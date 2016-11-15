@@ -26,6 +26,7 @@ export default Ember.Component.extend({
   behaviour:    'tap',
   tooltips:     false,
 
+
   min: 0,
   max: 100,
 
@@ -57,38 +58,48 @@ export default Ember.Component.extend({
     );
     let sliderEvents = Ember.A(['change', 'set', 'slide', 'update', 'start', 'end']);
 
-    noUiSlider.create($this, properties);
+    // We first check if the element has a slider already created
+    if ($this.noUiSlider && $this.noUiSlider.destroy) {
+      $this.noUiSlider.destroy();
+    }
+
+    noUiSlider.create($this, properties, true);
 
     let slider = $this.noUiSlider;
-    this.set('slider', slider);
 
-    sliderEvents.forEach(event => {
-      if (!isEmpty(this.get(`on-${event}`))) {
-        slider.on(event, () => {
-          run(this, function() {
+    // We set slider next sync cycle to avoid deprecation warnings
+    run.schedule('sync', () => {
+      this.set('slider', slider);
+
+      sliderEvents.forEach(event => {
+        if (!isEmpty(this.get(`on-${event}`))) {
+          slider.on(event, () => {
+            run(this, function() {
+              let val = this.get("slider").get();
+              this.sendAction(`on-${event}`, val);
+            });
+          });
+        }
+      });
+
+      /** DEPRECATED AND WILL BE REMOVED BEFORE 1.0 **/
+      slider.on('change', () => {
+        run(this, function () {
             let val = this.get("slider").get();
-            this.sendAction(`on-${event}`, val);
+            this.sendDeprecatedAction("change", val);
+        });
+      });
+
+      if (!isEmpty(this.get('slide'))) {
+        slider.on('slide', () => {
+          run(this, function () {
+            let val = this.get("slider").get();
+            this.sendDeprecatedAction('slide', val);
           });
         });
       }
     });
 
-    /** DEPRECATED AND WILL BE REMOVED BEFORE 1.0 **/
-    slider.on('change', () => {
-      run(this, function () {
-          let val = this.get("slider").get();
-          this.sendDeprecatedAction("change", val);
-      });
-    });
-
-    if (!isEmpty(this.get('slide'))) {
-      slider.on('slide', () => {
-        run(this, function () {
-          let val = this.get("slider").get();
-          this.sendDeprecatedAction('slide', val);
-        });
-      });
-    }
   }),
 
   teardown: on('willDestroyElement', function() {
