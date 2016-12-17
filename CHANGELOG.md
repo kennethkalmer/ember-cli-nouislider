@@ -1,5 +1,7 @@
 ## master
 
+## 0.11.0 2016-16-16 - Happy Reconciliation Day
+
 * Bump to Ember 2.10.0
 * Updated docs example (#40 - @adambowles)
 * Update slider if component properties have changed (#38 - @renebigot)
