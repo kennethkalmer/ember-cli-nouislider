@@ -99,7 +99,9 @@ export default Ember.Component.extend({
       'start'
     );
 
-    slider.updateOptions(properties);
+    if (slider) {
+      slider.updateOptions(properties);
+    }
   }),
 
   teardown: on('willDestroyElement', function() {
