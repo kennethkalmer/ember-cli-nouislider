@@ -1,5 +1,8 @@
 ## master
 
+* Updated docs example (#40 - @adambowles)
+* Update slider if component properties have changed (#38 - @renebigot)
+
 ## 0.10.0 2016-10-03
 
 * Bump to Ember 2.8.0 LTS
