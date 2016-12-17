@@ -47,7 +47,7 @@ export default RangeSlider;
 Include the slider into your views like this:
 
 ```handlebars
-{{range-slider start=someValue change="changedAction"}}
+{{range-slider start=someValue on-change="changedAction"}}
 ```
 
 And setup an action handler in your route:
