@@ -1,5 +1,6 @@
 ## master
 
+* Bump to Ember 2.10.0
 * Updated docs example (#40 - @adambowles)
 * Update slider if component properties have changed (#38 - @renebigot)
 
