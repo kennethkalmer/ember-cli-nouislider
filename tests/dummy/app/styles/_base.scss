@@ -223,7 +223,8 @@
     position: relative;
     padding: 20px 60px 50px 30px;
     margin: 20px 0;
-    overflow: hidden;
+    font-size: 12px;
+    line-height: 1em;
   }
   .example-val {
     font: 400 12px Arial;
@@ -240,6 +241,9 @@
   }
   .example.vertical .noUi-target {
     height: 150px;
+  }
+  .example.tooltips ~ .example.tooltips {
+      margin-top: 0;
   }
 
   .before-example ~ .example {
