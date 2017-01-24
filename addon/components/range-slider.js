@@ -99,7 +99,6 @@ export default Ember.Component.extend({
         });
       }
     });
-
   }),
 
   update: on('didUpdateAttrs', function() {
