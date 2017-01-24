@@ -26,7 +26,6 @@ export default Ember.Component.extend({
   behaviour:    'tap',
   tooltips:     false,
 
-
   min: 0,
   max: 100,
 
