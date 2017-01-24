@@ -102,6 +102,19 @@ export default Ember.Component.extend({
 
   }),
 
+  update: on('didUpdateAttrs', function() {
+    let slider = this.get('slider');
+    let properties = this.getProperties(
+      'margin', 'limit', 'step',
+      'range', 'animate', 'snap',
+      'start'
+    );
+
+    if (slider) {
+      slider.updateOptions(properties);
+    }
+  }),
+
   teardown: on('willDestroyElement', function() {
     var slider = this.get('slider');
 

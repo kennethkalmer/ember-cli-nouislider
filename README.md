@@ -47,7 +47,7 @@ export default RangeSlider;
 Include the slider into your views like this:
 
 ```handlebars
-{{range-slider start=someValue change="changedAction"}}
+{{range-slider start=someValue on-change="changedAction"}}
 ```
 
 And setup an action handler in your route:
@@ -104,4 +104,4 @@ This section outlines the details of collaborating on this Ember addon.
 
 * `ember build`
 
-For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
+For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
