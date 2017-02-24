@@ -37,7 +37,7 @@ export default Ember.Component.extend({
   }),
 
   formatTo(value) { return value; },
-  formatFrom(value) { return value; },
+  formatFrom(value) { return +value; },
 
   format: computed('formatTo', 'formatFrom', function() {
     return {
