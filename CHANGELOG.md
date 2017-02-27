@@ -1,5 +1,11 @@
 ## master
 
+## 0.12.0 2017-02-27
+
+* Fix deprecation warnings when rendering slider (#39 - @showy)
+* Fix incorrect behaviour with negative ranges (reporting #24 @Ramblurr, fixed #43 @eraleis)
+* Switch to using npm for nouislider (#44 - @bobisjan)
+
 ## 0.11.0 2016-16-16 - Happy Reconciliation Day
 
 * Bump to Ember 2.10.0
