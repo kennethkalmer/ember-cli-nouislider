@@ -1,26 +1,45 @@
 /* jshint node: true */
 'use strict';
+var path = require('path');
+var Funnel = require('broccoli-funnel');
+var MergeTrees = require('broccoli-merge-trees');
 
 module.exports = {
   name: 'ember-cli-nouislider',
 
-  included: function(app) {
-    this._super.included(app);
+  included: function() {
+    this._super.included.apply(this, arguments);
+    this._ensureThisImport();
+
     if (!process.env.EMBER_CLI_FASTBOOT) {
-      // In nested addons, app.bowerDirectory might not be available
-      var bowerDirectory = app.bowerDirectory || 'bower_components';
-      // In ember-cli < 2.7, this.import is not available, so fall back to use app.import
-      var importShim = typeof this.import !== 'undefined' ? this : app;
+      this.import('vendor/nouislider.js');
+      this.import('vendor/nouislider.min.css');
+      this.import('vendor/shims/nouislider.js');
+    }
+  },
 
-      importShim.import({
-        development: bowerDirectory + '/nouislider/distribute/nouislider.js',
-        production: bowerDirectory + '/nouislider/distribute/nouislider.min.js'
-      });
-      importShim.import(bowerDirectory + '/nouislider/distribute/nouislider.min.css');
+  treeForVendor: function(vendorTree) {
+    var nouisliderTree = new Funnel(path.dirname(require.resolve('nouislider/distribute/nouislider.js')), {
+      files: ['nouislider.js', 'nouislider.min.css'],
+    });
 
-      importShim.import('vendor/nouislider/shim.js', {
-        exports: { 'noUiSlider': ['default'] }
-      });
+    return new MergeTrees([vendorTree, nouisliderTree]);
+  },
+
+  _ensureThisImport: function() {
+    if (!this.import) {
+      this._findHost = function findHostShim() {
+        var current = this;
+        var app;
+        do {
+          app = current.app || app;
+        } while (current.parent.parent && (current = current.parent));
+        return app;
+      };
+      this.import = function importShim(asset, options) {
+        var app = this._findHost();
+        app.import(asset, options);
+      };
     }
   }
 };
