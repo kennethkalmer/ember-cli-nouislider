@@ -1,5 +1,9 @@
 ## master
 
+## 0.13.0 2017-03-12
+
+* Bump to nouislider 9.2.0 (#44)
+
 ## 0.12.0 2017-02-27
 
 * Fix deprecation warnings when rendering slider (#39 - @showy)
