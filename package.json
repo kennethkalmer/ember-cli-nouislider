@@ -15,9 +15,9 @@
     "test": "ember try:each"
   },
   "dependencies": {
-    "nouislider": "^9.2.0",
     "ember-cli-babel": "^6.3.0",
-    "ember-cli-htmlbars": "^2.0.1"
+    "ember-cli-htmlbars": "^2.0.1",
+    "nouislider": "^10.1.0"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
