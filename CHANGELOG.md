@@ -1,5 +1,9 @@
 ## master
 
+## 0.14.1 2017-10-08
+
+_Version bump only because I can't NPM properly_
+
 ## 0.14.0 2017-10-08
 
 * Expose multitouch option (#47)
