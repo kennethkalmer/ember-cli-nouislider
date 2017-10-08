@@ -1,5 +1,13 @@
 ## master
 
+## 0.14.0 2017-10-08
+
+* Expose multitouch option (#47)
+* Warn when component can't be initialized (#34)
+* Bump to nouislider 10.1.0
+* Bump to Ember 2.15.1
+
+
 ## 0.13.0 2017-03-12
 
 * Bump to nouislider 9.2.0 (#44)
