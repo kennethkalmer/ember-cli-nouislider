@@ -26,6 +26,7 @@ export default Ember.Component.extend({
   direction:    'ltr',
   behaviour:    'tap',
   tooltips:     false,
+  multitouch:   false,
 
   min: 0,
   max: 100,
@@ -54,7 +55,8 @@ export default Ember.Component.extend({
       'limit', 'range', 'connect',
       'orientation', 'direction',
       'behaviour', 'animate', 'snap',
-      'pips', 'format', 'tooltips'
+      'pips', 'format', 'tooltips',
+      'multitouch'
     );
     let sliderEvents = Ember.A(['change', 'set', 'slide', 'update', 'start', 'end']);
 
