@@ -6,7 +6,8 @@ const {
   run,
   isEmpty,
   computed,
-  observer
+  observer,
+  Logger: { warn }
 } = Ember;
 
 export default Ember.Component.extend({
@@ -62,7 +63,11 @@ export default Ember.Component.extend({
       $this.noUiSlider.destroy();
     }
 
-    noUiSlider.create($this, properties, true);
+    try {
+      noUiSlider.create($this, properties, true);
+    } catch (err) {
+      warn(`[ember-cli-nouislider]: ${err}`);
+    }
 
     let slider = $this.noUiSlider;
 
