@@ -1,17 +1,17 @@
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 /* global Prism */
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: "pre",
   language: undefined,
-  codeClass: Ember.computed(function() {
-    var lang = this.get("language");
+  codeClass: computed(function() {
+    let lang = this.get("language");
     return "language-" + lang;
   }),
 
-  didInsertElement: function() {
+  didInsertElement() {
     var code = this.element.children[0];
     Prism.highlightElement(code);
   }
-
 });

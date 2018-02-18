@@ -1,8 +1,10 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import EmberObject from '@ember/object';
+import { later } from '@ember/runloop';
 
-export default Ember.Route.extend({
+export default Route.extend({
   model: function() {
-    return Ember.Object.create({
+    return EmberObject.create({
       start: [ 5, 15 ],
       range: { min: 0, max: 20 },
 
@@ -23,33 +25,9 @@ export default Ember.Route.extend({
       model.set('value', val);
       model.set(property, true);
 
-      Ember.run.later(model, function() {
+      later(model, function() {
         this.set(property, false);
       }, 500);
-    },
-
-    update(val) {
-      this.send("showEffect", "updating", val);
-    },
-
-    change: function(val) {
-      this.send("showEffect", "changed", val);
-    },
-
-    setValue: function(val) {
-      this.send("showEffect", "beenSet", val);
-    },
-
-    slide: function(val) {
-      this.send("showEffect", "sliding", val);
-    },
-
-    started: function(val) {
-      this.send("showEffect", "started", val);
-    },
-
-    ended: function(val) {
-      this.send("showEffect", "ended", val);
     }
   }
 });

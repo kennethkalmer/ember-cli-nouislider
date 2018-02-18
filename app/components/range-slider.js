@@ -1,3 +1,1 @@
-import RangeSlider from 'ember-cli-nouislider/components/range-slider';
-
-export default RangeSlider;
+export { default } from 'ember-cli-nouislider/components/range-slider';

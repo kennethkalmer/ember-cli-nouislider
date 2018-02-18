@@ -1,32 +1,53 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import noUiSlider from 'noUiSlider';
+import { run } from '@ember/runloop';
+import { computed, observer } from '@ember/object';
 
-const {
-  on,
-  run,
-  isEmpty,
-  computed,
-  observer,
-  Logger: { warn }
-} = Ember;
+const SLIDER_EVENTS = ['change', 'set', 'slide', 'update', 'start', 'end'];
+const SLIDER_CREATE_PROPERTIES = [
+  'start',
+  'step',
+  'margin',
+  'limit',
+  'range',
+  'connect',
+  'orientation',
+  'direction',
+  'behaviour',
+  'animate',
+  'snap',
+  'pips',
+  'format',
+  'tooltips',
+  'multitouch'
+];
+const SLIDER_UPDATE_PROPERTIES = [
+  'margin',
+  'limit',
+  'step',
+  'range',
+  'animate',
+  'snap',
+  'start'
+];
 
-export default Ember.Component.extend({
+export default Component.extend({
   attributeBindings: ['disabledOrUndefined:disabled'],
-  slider:       null,
-  start:        undefined,
-  step:         undefined,
-  margin:       undefined,
-  limit:        undefined,
-  pips:         undefined,
-  animate:      true,
-  snap:         false,
-  connect:      false,
-  disabled:     false,
-  orientation:  'horizontal',
-  direction:    'ltr',
-  behaviour:    'tap',
-  tooltips:     false,
-  multitouch:   false,
+  slider: null,
+  start: undefined,
+  step: undefined,
+  margin: undefined,
+  limit: undefined,
+  pips: undefined,
+  animate: true,
+  snap: false,
+  connect: false,
+  disabled: false,
+  orientation: 'horizontal',
+  direction: 'ltr',
+  behaviour: 'tap',
+  tooltips: false,
+  multitouch: false,
 
   min: 0,
   max: 100,
@@ -38,8 +59,13 @@ export default Ember.Component.extend({
     };
   }),
 
-  formatTo(value) { return value; },
-  formatFrom(value) { return +value; },
+  formatTo(value) {
+    return value;
+  },
+
+  formatFrom(value) {
+    return +value;
+  },
 
   format: computed('formatTo', 'formatFrom', function() {
     return {
@@ -48,80 +74,49 @@ export default Ember.Component.extend({
     };
   }),
 
-  setup: on('didInsertElement', function() {
-    let $this = this.$().get(0);
-    let properties = this.getProperties(
-      'start', 'step', 'margin',
-      'limit', 'range', 'connect',
-      'orientation', 'direction',
-      'behaviour', 'animate', 'snap',
-      'pips', 'format', 'tooltips',
-      'multitouch'
-    );
-    let sliderEvents = Ember.A(['change', 'set', 'slide', 'update', 'start', 'end']);
+  didInsertElement() {
+    let element = this.get('element');
+    let { noUiSlider: slider } = element;
+    let properties = this.getProperties(...SLIDER_CREATE_PROPERTIES);
 
     // We first check if the element has a slider already created
-    if ($this.noUiSlider && $this.noUiSlider.destroy) {
-      $this.noUiSlider.destroy();
+    if (slider && slider.destroy) {
+      slider.destroy();
     }
 
     try {
-      noUiSlider.create($this, properties, true);
+      slider = noUiSlider.create(element, properties, true);
     } catch (err) {
-      warn(`[ember-cli-nouislider]: ${err}`);
+      /* eslint no-console:0 */
+      console.warn(`[ember-nouislider]: ${err}`);
     }
 
-    let slider = $this.noUiSlider;
+    this.slider = slider;
 
-    // We set slider next sync cycle to avoid deprecation warnings
-    run.schedule('sync', () => {
-      this.set('slider', slider);
-
-      sliderEvents.forEach(event => {
-        if (!isEmpty(this.get(`on-${event}`))) {
-          slider.on(event, () => {
-            run(this, function() {
-              let val = this.get("slider").get();
-              this.sendAction(`on-${event}`, val);
-            });
-          });
-        }
-      });
-
-      /** DEPRECATED AND WILL BE REMOVED BEFORE 1.0 **/
-      slider.on('change', () => {
-        run(this, function () {
-            let val = this.get("slider").get();
-            this.sendDeprecatedAction("change", val);
-        });
-      });
-
-      if (!isEmpty(this.get('slide'))) {
-        slider.on('slide', () => {
-          run(this, function () {
-            let val = this.get("slider").get();
-            this.sendDeprecatedAction('slide', val);
+    for (let event of SLIDER_EVENTS) {
+      let action = `on-${event}`;
+      if (typeof this[action] === 'function') {
+        slider.on(event, () => {
+          run(this, function() {
+            let value = this.slider.get();
+            this[action](value);
           });
         });
       }
-    });
-  }),
+    }
+  },
 
-  update: on('didUpdateAttrs', function() {
-    let slider = this.get('slider');
-    let properties = this.getProperties(
-      'margin', 'limit', 'step',
-      'range', 'animate', 'snap',
-      'start'
-    );
+  didUpdateAttrs() {
+    let { slider } = this;
+    let properties = this.getProperties(SLIDER_UPDATE_PROPERTIES);
 
     if (slider) {
       slider.updateOptions(properties);
     }
-  }),
+  },
 
-  teardown: on('willDestroyElement', function() {
-    var slider = this.get('slider');
+  willDestroyElement() {
+    let { slider } = this;
 
     slider.off('change');
     slider.off('slide');
@@ -131,32 +126,21 @@ export default Ember.Component.extend({
     slider.off('end');
 
     slider.destroy();
-  }),
+  },
 
-  setVal: observer('start', function() {
-    let slider = this.get('slider');
+  setValue: observer('start', function() {
+    let { slider } = this;
 
     if (slider) {
-      var val = this.get('start');
-      slider.set(val);
+      let value = this.get('start');
+      slider.set(value);
     }
   }),
 
   // disabled can't be just `false` - this leads to an attribute of disabled="false"
-  disabledOrUndefined: Ember.computed('disabled', function() {
+  disabledOrUndefined: computed('disabled', function() {
     if (this.get('disabled')) {
       return true;
     }
-  }),
-  /**
-   * Perform a naive check to see if the deprecated action name exists in our
-   * attrs and then log a deprecation warning and trigger the old action.
-   */
-  sendDeprecatedAction(action, value) {
-    var actionName = this.get(`attrs.${action}`);
-    if(!isEmpty(actionName)) {
-      Ember.Logger.warn(`DEPRECATION (ember-cli-nouislider): "${action}" action is deprecated in favor of "on-${action}". Support for "${action}" will be dropped in 1.0`);
-      this.sendAction(action, value);
-    }
-  }
+  })
 });

@@ -47,21 +47,22 @@ export default RangeSlider;
 Include the slider into your views like this:
 
 ```handlebars
-{{range-slider start=someValue on-change="changedAction"}}
+{{range-slider start=someValue on-change=(action "changedAction")}}
 ```
 
 And setup an action handler in your route:
 
 ```js
 // app/routes/my-route.js
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { debug } from '@ember/debug';
 
-export default Ember.Route.extend({
+export default Controller.extend({
   // ...
   actions: {
     // ...
     changedAction: function(value) {
-      Ember.debug( "New slider value: %@".fmt( value ) );
+      debug( `New slider value: ${value}`);
     }
   }
 });
@@ -88,19 +89,25 @@ This section outlines the details of collaborating on this Ember addon.
 * `cd ember-cli-nouislider`
 * `npm install`
 
-## Running
+### Linting
+
+* `npm run lint:js`
+* `npm run lint:js -- --fix`
+
+### Running tests
+
+* `ember test` – Runs the test suite on the current Ember version
+* `ember test --server` – Runs the test suite in "watch mode"
+* `npm test` – Runs `ember try:each` to test your addon against multiple Ember versions
+
+### Running the dummy application
 
 * `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-
-## Running Tests
-
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
+* Visit the dummy application at [http://localhost:4200](http://localhost:4200).
 
 For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
+
+License
+------------------------------------------------------------------------------
+
+This project is licensed under the [MIT License](LICENSE.md).
