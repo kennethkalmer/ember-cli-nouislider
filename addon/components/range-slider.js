@@ -56,7 +56,7 @@ export default Ember.Component.extend({
       'orientation', 'direction',
       'behaviour', 'animate', 'snap',
       'pips', 'format', 'tooltips',
-      'multitouch'
+      'multitouch', 'cssPrefix', 'cssClasses'
     );
     let sliderEvents = Ember.A(['change', 'set', 'slide', 'update', 'start', 'end']);
 
