@@ -1,4 +1,3 @@
-/* jshint node: true */
 'use strict';
 var path = require('path');
 var Funnel = require('broccoli-funnel');
