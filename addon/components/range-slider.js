@@ -55,7 +55,8 @@ export default Component.extend({
   },
 
   setup() {
-    let $this = this.$().get(0);
+    let element = this.get('element');
+    let { noUiSlider: slider } = element;
     let properties = this.getProperties(
       'start', 'step', 'margin',
       'limit', 'range', 'connect',
@@ -67,18 +68,17 @@ export default Component.extend({
     let sliderEvents = A(['change', 'set', 'slide', 'update', 'start', 'end']);
 
     // We first check if the element has a slider already created
-    if ($this.noUiSlider && $this.noUiSlider.destroy) {
-      $this.noUiSlider.destroy();
+    if (slider && slider.destroy) {
+      slider.destroy();
     }
 
-    let slider;
-
     try {
-      slider = noUiSlider.create($this, properties, true);
-      this.set('slider', slider);
+      slider = noUiSlider.create(element, properties, true);
     } catch (err) {
       warn(`[ember-cli-nouislider]: ${err}`);
     }
+
+    this.set('slider', slider);
 
     sliderEvents.forEach(event => {
       if (!isEmpty(this.get(`on-${event}`))) {
