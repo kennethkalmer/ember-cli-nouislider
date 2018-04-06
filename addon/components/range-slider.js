@@ -1,16 +1,18 @@
+/* eslint ember/closure-actions: 0 */
+
+import { A } from '@ember/array';
+import Component from '@ember/component';
+import { run } from '@ember/runloop';
+import { isEmpty } from '@ember/utils';
+import { observer, computed } from '@ember/object';
 import Ember from 'ember';
 import noUiSlider from 'noUiSlider';
 
 const {
-  on,
-  run,
-  isEmpty,
-  computed,
-  observer,
   Logger: { warn }
 } = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
   attributeBindings: ['disabledOrUndefined:disabled'],
   slider:       null,
   start:        undefined,
@@ -48,7 +50,11 @@ export default Ember.Component.extend({
     };
   }),
 
-  setup: on('didInsertElement', function() {
+  didInsertElement() {
+    this.setup();
+  },
+
+  setup() {
     let $this = this.$().get(0);
     let properties = this.getProperties(
       'start', 'step', 'margin',
@@ -58,56 +64,56 @@ export default Ember.Component.extend({
       'pips', 'format', 'tooltips',
       'multitouch'
     );
-    let sliderEvents = Ember.A(['change', 'set', 'slide', 'update', 'start', 'end']);
+    let sliderEvents = A(['change', 'set', 'slide', 'update', 'start', 'end']);
 
     // We first check if the element has a slider already created
     if ($this.noUiSlider && $this.noUiSlider.destroy) {
       $this.noUiSlider.destroy();
     }
 
+    let slider;
+
     try {
-      noUiSlider.create($this, properties, true);
+      slider = noUiSlider.create($this, properties, true);
+      this.set('slider', slider);
     } catch (err) {
       warn(`[ember-cli-nouislider]: ${err}`);
     }
 
-    let slider = $this.noUiSlider;
-
-    // We set slider next sync cycle to avoid deprecation warnings
-    run.schedule('sync', () => {
-      this.set('slider', slider);
-
-      sliderEvents.forEach(event => {
-        if (!isEmpty(this.get(`on-${event}`))) {
-          slider.on(event, () => {
-            run(this, function() {
-              let val = this.get("slider").get();
-              this.sendAction(`on-${event}`, val);
-            });
-          });
-        }
-      });
-
-      /** DEPRECATED AND WILL BE REMOVED BEFORE 1.0 **/
-      slider.on('change', () => {
-        run(this, function () {
+    sliderEvents.forEach(event => {
+      if (!isEmpty(this.get(`on-${event}`))) {
+        slider.on(event, () => {
+          run(this, function() {
             let val = this.get("slider").get();
-            this.sendDeprecatedAction("change", val);
-        });
-      });
-
-      if (!isEmpty(this.get('slide'))) {
-        slider.on('slide', () => {
-          run(this, function () {
-            let val = this.get("slider").get();
-            this.sendDeprecatedAction('slide', val);
+            this.sendAction(`on-${event}`, val);
           });
         });
       }
     });
-  }),
 
-  update: on('didUpdateAttrs', function() {
+    /** DEPRECATED AND WILL BE REMOVED BEFORE 1.0 **/
+    slider.on('change', () => {
+      run(this, function () {
+          let val = this.get("slider").get();
+          this.sendDeprecatedAction("change", val);
+      });
+    });
+
+    if (!isEmpty(this.get('slide'))) {
+      slider.on('slide', () => {
+        run(this, function () {
+          let val = this.get("slider").get();
+          this.sendDeprecatedAction('slide', val);
+        });
+      });
+    }
+  },
+
+  didUpdateAttrs() {
+    this.update();
+  },
+
+  update() {
     let slider = this.get('slider');
     let properties = this.getProperties(
       'margin', 'limit', 'step',
@@ -118,9 +124,13 @@ export default Ember.Component.extend({
     if (slider) {
       slider.updateOptions(properties);
     }
-  }),
+  },
 
-  teardown: on('willDestroyElement', function() {
+  willDestroyElement() {
+    this.teardown();
+  },
+
+  teardown() {
     var slider = this.get('slider');
 
     slider.off('change');
@@ -131,7 +141,7 @@ export default Ember.Component.extend({
     slider.off('end');
 
     slider.destroy();
-  }),
+  },
 
   setVal: observer('start', function() {
     let slider = this.get('slider');
@@ -143,7 +153,7 @@ export default Ember.Component.extend({
   }),
 
   // disabled can't be just `false` - this leads to an attribute of disabled="false"
-  disabledOrUndefined: Ember.computed('disabled', function() {
+  disabledOrUndefined: computed('disabled', function() {
     if (this.get('disabled')) {
       return true;
     }

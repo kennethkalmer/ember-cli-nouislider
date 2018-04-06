@@ -1,10 +1,11 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 /* global Prism */
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: "pre",
   language: undefined,
-  codeClass: Ember.computed(function() {
+  codeClass: computed(function() {
     var lang = this.get("language");
     return "language-" + lang;
   }),

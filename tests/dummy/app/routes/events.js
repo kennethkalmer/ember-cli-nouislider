@@ -1,8 +1,10 @@
-import Ember from 'ember';
+import { later } from '@ember/runloop';
+import EmberObject from '@ember/object';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   model: function() {
-    return Ember.Object.create({
+    return EmberObject.create({
       start: [ 5, 15 ],
       range: { min: 0, max: 20 },
 
@@ -23,7 +25,7 @@ export default Ember.Route.extend({
       model.set('value', val);
       model.set(property, true);
 
-      Ember.run.later(model, function() {
+      later(model, function() {
         this.set(property, false);
       }, 500);
     },

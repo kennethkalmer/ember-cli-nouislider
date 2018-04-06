@@ -1,6 +1,7 @@
-import Ember from 'ember';
+import { debug } from '@ember/debug';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   model: function() {
     return {
       value: [20, 80]
@@ -10,7 +11,7 @@ export default Ember.Route.extend({
   actions: {
     sliderChanged: function(value) {
       this.set("model.value", value);
-      Ember.debug("Slider value changed to %@".fmt(value));
+      debug("Slider value changed to %@".fmt(value));
     }
   }
 });
