@@ -1,4 +1,6 @@
-## master
+## ember-cli-3
+
+* Upgrade to Ember 3.0 (#53 - @tchak & #59 - @tchak)
 
 ## 0.14.1 2017-10-08
 
