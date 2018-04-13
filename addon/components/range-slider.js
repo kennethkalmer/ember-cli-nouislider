@@ -119,7 +119,7 @@ export default Component.extend({
   },
 
   update() {
-    let slider = this.get('slider');
+    let { slider } = this;
     let properties = this.getProperties(
       'margin', 'limit', 'step',
       'range', 'animate', 'snap',
@@ -136,7 +136,7 @@ export default Component.extend({
   },
 
   teardown() {
-    var slider = this.get('slider');
+    let { slider } = this;
 
     slider.off('change');
     slider.off('slide');
@@ -168,7 +168,7 @@ export default Component.extend({
    * attrs and then log a deprecation warning and trigger the old action.
    */
   sendDeprecatedAction(action, value) {
-    var actionName = this.get(`attrs.${action}`);
+    let actionName = this.get(`attrs.${action}`);
     if(!isEmpty(actionName)) {
       Ember.Logger.warn(`DEPRECATION (ember-cli-nouislider): "${action}" action is deprecated in favor of "on-${action}". Support for "${action}" will be dropped in 1.0`);
       this.sendAction(action, value);
