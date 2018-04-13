@@ -88,7 +88,7 @@ This section outlines the details of collaborating on this Ember addon.
 
 * `git clone https://github.com/kennethkalmer/ember-cli-nouislider`
 * `cd ember-cli-nouislider`
-* `npm install`
+* `yarn install`
 
 ### Linting
 
