@@ -14,7 +14,13 @@
       </p>
 
       <div class="example">
-        {{range-slider start=model.start range=model.range on-change="change" on-slide="slide" on-update="update" on-set="setValue" on-start="started" on-end="ended"}}
+        {{range-slider start=model.start range=model.range
+          on-change=(action "change")
+          on-slide=(action "slide")
+          on-update=(action "update")
+          on-set=(action "setValue")
+          on-start=(action "started")
+          on-end=(action "ended")}}
         <div class="logger">
           <div class="l-update {{if model.updating 'tShow'}}">Update</div>
           <div class="l-slider {{if model.sliding 'tShow'}}">Slide</div>
@@ -73,34 +79,36 @@
       {{#source-code language="handlebars"}}
 \{{range-slider start=model.start
                 range=model.range
-                on-slide="slide"
-                on-change="changed"
-                on-update="update"
-                on-set="setValue"
-                on-start="started"
-                on-end="ended"}}
+                on-slide=(action "slide")
+                on-change=(action "changed")
+                on-update=(action "update")
+                on-set=(action "setValue")
+                on-start=(action "started")
+                on-end=(action "ended")}}
       {{/source-code}}
 
       {{#source-code language="javascript"}}
-// app/routes/eventful.js
-export default Ember.Route.extend({
+// app/controller/events.js
+import Controller from '@ember/controller';
+
+export default Controller.extend({
   actions: {
-    update: function(val) {
+    update(value) {
       // updating
     },
-    changed: function(val) {
+    changed(value) {
       // change event
     },
-    slide: function(val) {
+    slide(value) {
       // sliding
     },
-    setValue: function(val) {
+    setValue(value) {
       // set event
     },
-    started: function(val) {
+    started(value) {
       // sliding started
     },
-    ended: function(val) {
+    ended(value) {
       // sliding ended
     }
   }
@@ -122,12 +130,15 @@ export default Ember.Route.extend({
     </div>
     <div class="side">
       {{#source-code language="handlebars"}}
-\{{range-slider on-change="myAction"}}
+\{{range-slider on-change=(action "myAction")}}
       {{/source-code}}
       {{#source-code language="javascript"}}
-export default Ember.Route.extend({
+// app/controller/events.js
+import Controller from '@ember/controller';
+
+export default Controller.extend({
   actions: {
-    myAction: function(val) {
+    myAction(value) {
       // ...
     }
   }
@@ -155,9 +166,12 @@ export default Ember.Route.extend({
 \{{range-slider on-slide="slidingAction"}}
       {{/source-code}}
       {{#source-code language="javascript"}}
-export default Ember.Route.extend({
+// app/controller/events.js
+import Controller from '@ember/controller';
+
+export default Controller.extend({
   actions: {
-    slidingAction: function(val) {
+    slidingAction(value) {
       // ...
     }
   }

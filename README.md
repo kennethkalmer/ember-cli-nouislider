@@ -48,21 +48,22 @@ export default RangeSlider;
 Include the slider into your views like this:
 
 ```handlebars
-{{range-slider start=someValue on-change="changedAction"}}
+{{range-slider start=someValue on-change=(action "changedAction")}}
 ```
 
 And setup an action handler in your route:
 
 ```js
 // app/routes/my-route.js
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { debug } from '@ember/debug';
 
-export default Ember.Route.extend({
+export default Controller.extend({
   // ...
   actions: {
     // ...
     changedAction: function(value) {
-      Ember.debug( "New slider value: %@".fmt( value ) );
+      debug( `New slider value: ${value}`);
     }
   }
 });

@@ -6,13 +6,12 @@ export default Component.extend({
   tagName: "pre",
   language: undefined,
   codeClass: computed(function() {
-    var lang = this.get("language");
+    let lang = this.get("language");
     return "language-" + lang;
   }),
 
-  didInsertElement: function() {
+  didInsertElement() {
     var code = this.element.children[0];
     Prism.highlightElement(code);
   }
-
 });

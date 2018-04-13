@@ -40,8 +40,13 @@ export default Component.extend({
     };
   }),
 
-  formatTo(value) { return value; },
-  formatFrom(value) { return +value; },
+  formatTo(value) {
+    return value;
+  },
+
+  formatFrom(value) {
+    return +value;
+  },
 
   format: computed('formatTo', 'formatFrom', function() {
     return {
@@ -78,7 +83,7 @@ export default Component.extend({
       warn(`[ember-cli-nouislider]: ${err}`);
     }
 
-    this.set('slider', slider);
+    this.slider = slider;
 
     sliderEvents.forEach(event => {
       if (!isEmpty(this.get(`on-${event}`))) {
@@ -143,12 +148,12 @@ export default Component.extend({
     slider.destroy();
   },
 
-  setVal: observer('start', function() {
-    let slider = this.get('slider');
+  setValue: observer('start', function() {
+    let { slider } = this;
 
     if (slider) {
-      var val = this.get('start');
-      slider.set(val);
+      let value = this.get('start');
+      slider.set(value);
     }
   }),
 
