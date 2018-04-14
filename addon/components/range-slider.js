@@ -68,7 +68,7 @@ export default Component.extend({
       'orientation', 'direction',
       'behaviour', 'animate', 'snap',
       'pips', 'format', 'tooltips',
-      'multitouch'
+      'multitouch', 'cssPrefix', 'cssClasses'
     );
     let sliderEvents = A(['change', 'set', 'slide', 'update', 'start', 'end']);
 
