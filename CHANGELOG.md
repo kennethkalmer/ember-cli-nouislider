@@ -1,5 +1,9 @@
 ## master
 
+## 1.0.0-rc.2 2018-04-14
+
+* Add cssPrefix & cssClasses options (#57 - @stephankaag)
+
 ## 1.0.0-rc.1 2018-04-14
 
 * Upgrade to Ember 3.0 (#53 - @tchak & #59 - @tchak)
