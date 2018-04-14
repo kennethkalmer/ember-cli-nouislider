@@ -1,4 +1,6 @@
+/* eslint-env node */
 'use strict';
+
 var path = require('path');
 var Funnel = require('broccoli-funnel');
 var MergeTrees = require('broccoli-merge-trees');
@@ -19,7 +21,7 @@ module.exports = {
 
   treeForVendor: function(vendorTree) {
     var nouisliderTree = new Funnel(path.dirname(require.resolve('nouislider/distribute/nouislider.js')), {
-      files: ['nouislider.js', 'nouislider.min.css'],
+      files: ['nouislider.js', 'nouislider.min.css']
     });
 
     return new MergeTrees([vendorTree, nouisliderTree]);
