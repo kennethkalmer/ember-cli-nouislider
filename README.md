@@ -13,7 +13,7 @@ and adds no extra dependencies other than noUiSlider itself (which has no extern
 To get started simply install the addon:
 
 ```
-$ ember install ember-cli-nouislider
+$ ember install ember-cli-nouislider@next
 ```
 
 (This addon supports Ember 1.13 and up. It might work on older versions, but this is guaranteed.)
