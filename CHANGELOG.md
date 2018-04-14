@@ -1,6 +1,10 @@
-## ember-cli-3
+## master
+
+## 1.0.0-rc.1 2018-04-14
 
 * Upgrade to Ember 3.0 (#53 - @tchak & #59 - @tchak)
+* Bump to nouislider 11.0 (#53 - @tchak & #59 - @tchak)
+* Move broccoli-funnel & broccoli-merge-trees to dependencies (from devDependencies)
 
 ## 0.14.1 2017-10-08
 
