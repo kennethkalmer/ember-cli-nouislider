@@ -1,5 +1,7 @@
 ## master
 
+* Remove deprecated `change` & `slide` properties
+
 ## 1.0.0-rc.2 2018-04-14
 
 * Add cssPrefix & cssClasses options (#57 - @stephankaag)
