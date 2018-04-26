@@ -1,6 +1,7 @@
 ## master
 
 * Remove deprecated `change` & `slide` properties
+* Use nouislider's ability to just remove all event listeners, instead of tediously keeping track
 
 ## 1.0.0-rc.2 2018-04-14
 

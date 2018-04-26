@@ -121,12 +121,8 @@ export default Component.extend({
   teardown() {
     let { slider } = this;
 
-    slider.off('change');
-    slider.off('slide');
-    slider.off('set');
-    slider.off('update');
-    slider.off('start');
-    slider.off('end');
+    // Remove all event listeners
+    slider.off();
 
     slider.destroy();
   },
