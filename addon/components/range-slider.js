@@ -141,5 +141,6 @@ export default Component.extend({
     if (this.get('disabled')) {
       return true;
     }
+    return undefined;
   })
 });
