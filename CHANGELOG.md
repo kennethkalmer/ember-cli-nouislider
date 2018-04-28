@@ -1,4 +1,4 @@
-## master
+## 1.0.0 2018-04-28 - My First Decade on GitHub
 
 * Remove deprecated `change` & `slide` properties
 * Use nouislider's ability to just remove all event listeners, instead of tediously keeping track
