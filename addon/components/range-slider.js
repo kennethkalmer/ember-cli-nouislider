@@ -18,6 +18,7 @@ export default Component.extend({
   start:        undefined,
   step:         undefined,
   margin:       undefined,
+  padding:      undefined,
   limit:        undefined,
   pips:         undefined,
   animate:      true,
@@ -63,7 +64,7 @@ export default Component.extend({
     let element = this.get('element');
     let { noUiSlider: slider } = element;
     let properties = this.getProperties(
-      'start', 'step', 'margin',
+      'start', 'step', 'margin', 'padding',
       'limit', 'range', 'connect',
       'orientation', 'direction',
       'behaviour', 'animate', 'snap',
@@ -106,7 +107,7 @@ export default Component.extend({
     let properties = this.getProperties(
       'margin', 'limit', 'step',
       'range', 'animate', 'snap',
-      'start'
+      'start', 'padding'
     );
 
     if (slider) {
