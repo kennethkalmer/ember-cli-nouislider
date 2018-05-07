@@ -104,9 +104,9 @@ export default Component.extend({
   update() {
     let { slider } = this;
     let properties = this.getProperties(
-      'margin', 'limit', 'step',
+      'margin', 'limit', 'padding',
       'range', 'animate', 'snap',
-      'start'
+      'step', 'format'
     );
 
     if (slider) {
