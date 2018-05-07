@@ -70,7 +70,7 @@ export default Component.extend({
       'pips', 'format', 'tooltips',
       'multitouch', 'cssPrefix', 'cssClasses'
     );
-    let sliderEvents = A(['change', 'set', 'slide', 'update', 'start', 'end']);
+    let sliderEvents = A(['change', 'set', 'slide', 'update']);
 
     // We first check if the element has a slider already created
     if (slider && slider.destroy) {
@@ -95,6 +95,34 @@ export default Component.extend({
         });
       }
     });
+
+    slider.on('start', () => {
+      run(this, function() {
+        this.onStart();
+        if (!isEmpty(this.get(`on-start`))) {
+          let val = this.get("slider").get();
+          this.sendAction(`on-start`, val);
+        }
+      });
+    });
+
+    slider.on('end', () => {
+      run(this, function() {
+        this.onEnd();
+        if (!isEmpty(this.get(`on-end`))) {
+          let val = this.get("slider").get();
+          this.sendAction(`on-end`, val);
+        }
+      });
+    });
+  },
+
+  onStart() {
+    this.sliding = true;
+  },
+
+  onEnd() {
+    delete this.sliding;
   },
 
   didUpdateAttrs() {
@@ -130,7 +158,7 @@ export default Component.extend({
   setValue: observer('start', function() {
     let { slider } = this;
 
-    if (slider) {
+    if (slider && !this.sliding) {
       let value = this.get('start');
       slider.set(value);
     }
