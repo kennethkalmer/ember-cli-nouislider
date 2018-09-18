@@ -4,7 +4,7 @@ import { A } from '@ember/array';
 import Component from '@ember/component';
 import { run } from '@ember/runloop';
 import { isEmpty } from '@ember/utils';
-import { observer, computed } from '@ember/object';
+import { computed } from '@ember/object';
 import Ember from 'ember';
 import noUiSlider from 'noUiSlider';
 
@@ -126,15 +126,6 @@ export default Component.extend({
 
     slider.destroy();
   },
-
-  setValue: observer('start', function() {
-    let { slider } = this;
-
-    if (slider) {
-      let value = this.get('start');
-      slider.set(value);
-    }
-  }),
 
   // disabled can't be just `false` - this leads to an attribute of disabled="false"
   disabledOrUndefined: computed('disabled', function() {
