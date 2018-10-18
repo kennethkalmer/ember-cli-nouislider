@@ -90,7 +90,7 @@ export default Component.extend({
         slider.on(event, () => {
           run(this, function() {
             let val = this.get("slider").get();
-            this.sendAction(`on-${event}`, val);
+            this[`on-${event}`](val);
           });
         });
       }
