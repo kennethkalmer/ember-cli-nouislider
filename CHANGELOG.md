@@ -1,3 +1,7 @@
+## 1.1.0 2018-11-09
+
+* Support closure actions because sendAction is deprecated (#68 - @scottkidder)
+
 ## 1.0.0 2018-04-28 - My First Decade on GitHub
 
 * Remove deprecated `change` & `slide` properties
