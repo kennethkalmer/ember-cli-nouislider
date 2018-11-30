@@ -106,22 +106,18 @@ export default Component.extend({
     });
   },
 
-  didUpdateAttrs() {
-    this.update();
-  },
-
-  update() {
+  optionsChanged: observer('margin', 'limit', 'padding','range', 'animate', 'snap', 'step', 'format', function() {
     let { slider } = this;
     let properties = this.getProperties(
-      'margin', 'limit', 'step',
+      'margin', 'limit', 'padding',
       'range', 'animate', 'snap',
-      'start'
+      'step', 'format'
     );
 
     if (slider) {
       slider.updateOptions(properties);
     }
-  },
+  }),
 
   willDestroyElement() {
     this.teardown();
