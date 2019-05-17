@@ -14,21 +14,22 @@ const {
 
 export default Component.extend({
   attributeBindings: ['disabledOrUndefined:disabled'],
-  slider:       null,
-  start:        undefined,
-  step:         undefined,
-  margin:       undefined,
-  limit:        undefined,
-  pips:         undefined,
-  animate:      true,
-  snap:         false,
-  connect:      false,
-  disabled:     false,
-  orientation:  'horizontal',
-  direction:    'ltr',
-  behaviour:    'tap',
-  tooltips:     false,
-  multitouch:   false,
+  slider:           null,
+  start:            undefined,
+  step:             undefined,
+  margin:           undefined,
+  limit:            undefined,
+  pips:             undefined,
+  animate:          true,
+  snap:             false,
+  connect:          false,
+  disabled:         false,
+  orientation:      'horizontal',
+  direction:        'ltr',
+  behaviour:        'tap',
+  tooltips:         false,
+  multitouch:       false,
+  keyboardSupport:  true,
 
   min: 0,
   max: 100,
@@ -68,7 +69,8 @@ export default Component.extend({
       'orientation', 'direction',
       'behaviour', 'animate', 'snap',
       'pips', 'format', 'tooltips',
-      'multitouch', 'cssPrefix', 'cssClasses'
+      'multitouch', 'cssPrefix',
+      'cssClasses', 'keyboardSupport'
     );
     let sliderEvents = A(['change', 'set', 'slide', 'update', 'start', 'end']);
 
@@ -115,7 +117,7 @@ export default Component.extend({
     let properties = this.getProperties(
       'margin', 'limit', 'step',
       'range', 'animate', 'snap',
-      'start'
+      'start', 'keyboardSupport'
     );
 
     if (slider) {
