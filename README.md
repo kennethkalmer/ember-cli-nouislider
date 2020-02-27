@@ -16,11 +16,14 @@ To get started simply install the addon:
 $ ember install ember-cli-nouislider
 ```
 
-(This addon supports Ember 1.13 and up. It might work on older versions, but this is guaranteed.)
-
-
 This will install `nouislider` via Bower, and will include it into your application's
 mergetree, so you don't need to worry about anything there.
+
+## Compatibility
+
+* Ember.js v3.4 or above
+* Ember CLI v2.13 or above
+* Node.js v8 or above
 
 ## Demo & documentation
 
@@ -80,35 +83,7 @@ To see how the slider is initialized internally, please have a look at
 `app/components/range-slider.js` in this project, or browse through the
 [documentation](https://kennethkalmer.github.com/ember-cli-nouislider).
 
-## Contributing or running locally
 
-This section outlines the details of collaborating on this Ember addon.
-
-### Installing dependencies
-
-* `git clone https://github.com/kennethkalmer/ember-cli-nouislider`
-* `cd ember-cli-nouislider`
-* `yarn install`
-
-### Linting
-
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
-
-### Running tests
-
-* `ember test` – Runs the test suite on the current Ember version
-* `ember test --server` – Runs the test suite in "watch mode"
-* `npm test` – Runs `ember try:each` to test your addon against multiple Ember versions
-
-### Running the dummy application
-
-* `ember serve`
-* Visit the dummy application at [http://localhost:4200](http://localhost:4200).
-
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
-
-License
-------------------------------------------------------------------------------
+## License
 
 This project is licensed under the [MIT License](LICENSE.md).

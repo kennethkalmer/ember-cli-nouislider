@@ -2,9 +2,9 @@
 
 ## Installation
 
-* `git clone <repository-url>`
-* `cd my-addon`
-* `npm install`
+* `git clone https://github.com/kennethkalmer/ember-cli-nouislider`
+* `cd ember-cli-nouislider`
+* `yarn install`
 
 ## Linting
 
