@@ -87,11 +87,20 @@ export default Component.extend({
     this.slider = slider;
 
     sliderEvents.forEach(event => {
-      if (!isEmpty(this.get(`on-${event}`))) {
+      const eventActionName = `on-${event}`;
+
+      if (!isEmpty(this.get(eventActionName))) {
         slider.on(event, () => {
           run(this, function() {
-            let val = this.get("slider").get();
-            this.sendAction(`on-${event}`, val);
+            const val = this.get('slider').get();
+            const action = this.get(eventActionName);
+
+            if (typeof(action) === 'string') {
+              // Note that `sendAction` is deprecated and this will trigger a deprecation message.
+              this.sendAction(eventActionName, val);
+            } else if (typeof(action) === 'function') {
+              action(val);
+            }
           });
         });
       }
