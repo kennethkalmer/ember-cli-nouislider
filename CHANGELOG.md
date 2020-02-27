@@ -1,3 +1,13 @@
+## master
+
+* Added the padding option (#62 - @sonnyt)
+* Upgrade ember-cli-sass and add sass to devDependencies
+* Upgrade to ember-cli 3.12
+
+## 1.1.0 2018-11-09
+
+* Support closure actions because sendAction is deprecated (#68 - @scottkidder)
+
 ## 1.0.0 2018-04-28 - My First Decade on GitHub
 
 * Remove deprecated `change` & `slide` properties

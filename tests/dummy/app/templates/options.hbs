@@ -143,6 +143,38 @@
     </div>
   </section>
 
+  <a href="#section-padding" id="section-padding" class="sect">&sect;</a><h2>Padding</h2>
+  <section>
+    <div class="view">
+      <p>Padding limits how close to the slider edges handles can be.</p>
+      <div class="example">
+        {{range-slider start=model.padding padding=10 range=model.defaultRange on-change="paddingChanged"}}
+        <div id="slider-padding"></div>
+        <span class="example-val">{{paddingMin}}</span>
+        <span class="example-val">{{paddingMax}}</span>
+      </div>
+
+      <div class="options">
+        <strong>Default</strong>
+        <div><em>none</em></div>
+
+        <strong>Accepted values</strong>
+        <div><code>number</code>,<br>
+          <code>array[number]</code>,<br>
+          <code>array[number, number]</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="side">
+      {{#source-code language="handlebars"}}
+\{{range-slider start=model.padding
+               padding=10
+               range=model.defaultRange}}
+      {{/source-code}}
+    </div>
+  </section>
+
   <a href="#section-step" id="section-step" class="sect">&sect;</a><h2>Step</h2>
   <section>
     <div class="view">
