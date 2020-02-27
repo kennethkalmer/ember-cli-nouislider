@@ -1,5 +1,7 @@
 ## master
 
+
+* Don't call slider.set during dragging (#63 - @stephankaag)
 * Added the padding option (#62 - @sonnyt)
 * Upgrade ember-cli-sass and add sass to devDependencies
 * Upgrade to ember-cli 3.12
