@@ -22,15 +22,15 @@
           on-start=(action "started")
           on-end=(action "ended")}}
         <div class="logger">
-          <div class="l-update {{if model.updating 'tShow'}}">Update</div>
-          <div class="l-slider {{if model.sliding 'tShow'}}">Slide</div>
-          <div class="l-set {{if model.beenSet 'tShow'}}">Set</div>
-          <div class="l-changes {{if model.changed 'tShow'}}">Change</div>
-          <div class="l-start {{if model.started 'tShow'}}">Start</div>
-          <div class="l-end {{if model.ended 'tShow'}}">End</div>
+          <div class="l-update {{if model.updating "tShow"}}">Update</div>
+          <div class="l-slider {{if model.sliding "tShow"}}">Slide</div>
+          <div class="l-set {{if model.beenSet "tShow"}}">Set</div>
+          <div class="l-changes {{if model.changed "tShow"}}">Change</div>
+          <div class="l-start {{if model.started "tShow"}}">Start</div>
+          <div class="l-end {{if model.ended "tShow"}}">End</div>
         </div>
         <div class="logger">
-          <input type="text" value="{{model.value}}">
+          <input type="text" value={{model.value}}>
         </div>
       </div>
       <table class="data-table events-table">
@@ -76,6 +76,7 @@
       </table>
     </div>
     <div class="side">
+      {{!-- template-lint-disable  --}}
       {{#source-code language="handlebars"}}
 \{{range-slider start=model.start
                 range=model.range
@@ -129,6 +130,7 @@ export default Controller.extend({
       </p>
     </div>
     <div class="side">
+      {{!-- template-lint-disable  --}}
       {{#source-code language="handlebars"}}
 \{{range-slider on-change=(action "myAction")}}
       {{/source-code}}
@@ -162,6 +164,7 @@ export default Controller.extend({
       </p>
     </div>
     <div class="side">
+      {{!-- template-lint-disable  --}}
       {{#source-code language="handlebars"}}
 \{{range-slider on-slide="slidingAction"}}
       {{/source-code}}

@@ -5,6 +5,7 @@
   <div class="quick">
     {{range-slider start=model.value min=0 max=100 connect=true}}
 
+    {{!-- template-lint-disable  --}}
     {{#source-code language="handlebars"}}
 \{{range-slider start=model.value
                min=0
@@ -14,7 +15,7 @@
 }}
     {{/source-code}}
 
-    {{#link-to 'download' class="hi-dl"}}Download ember-cli-nouislider{{/link-to}}
+    {{#link-to "download" class="hi-dl"}}Download ember-cli-nouislider{{/link-to}}
   </div>
 </div>
 

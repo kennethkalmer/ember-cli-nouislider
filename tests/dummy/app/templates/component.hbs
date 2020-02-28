@@ -5,7 +5,7 @@
   <section>
     <div class="double">
       <p>
-        Ensure you've already {{#link-to 'download'}}downloaded &amp; installed{{/link-to}}
+        Ensure you've already {{#link-to "download"}}downloaded &amp; installed{{/link-to}}
         the addon
       </p>
     </div>
@@ -18,6 +18,7 @@
       <p>Render your range-slider where you need it</p>
     </div>
     <div class="side">
+      {{!-- template-lint-disable  --}}
       {{#source-code language="handlebars"}}
 \{{! some template }}
 \{{range-slider start=someValue on-change="changedAction"}}
@@ -35,6 +36,7 @@
       </p>
     </div>
     <div class="side">
+      {{!-- template-lint-disable  --}}
       {{#source-code language="javascript"}}
 // app/routes/my-route.js
 import Ember from 'ember';
@@ -55,7 +57,7 @@ export default Ember.Route.extend({
   <h2>Next</h2>
   <section>
     <div class="double">
-      <p>Review the {{#link-to 'options'}}available options{{/link-to}}...</p>
+      <p>Review the {{#link-to "options"}}available options{{/link-to}}...</p>
     </div>
   </section>
 </div>
