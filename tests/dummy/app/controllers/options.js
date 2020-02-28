@@ -21,5 +21,15 @@ export default Controller.extend({
   limitMax: computed('model.limits.[]', function() {
     let limits = A(this.get('model.limits'));
     return limits.get('lastObject');
+  }),
+
+  paddingMin: computed('model.padding.[]', function() {
+    let padding = A(this.get('model.padding'));
+    return padding.get('firstObject');
+  }),
+
+  paddingMax: computed('model.padding.[]', function() {
+    let padding = A(this.get('model.padding'));
+    return padding.get('lastObject');
   })
 });

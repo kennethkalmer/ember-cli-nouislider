@@ -18,6 +18,7 @@ export default Component.extend({
   start:            undefined,
   step:             undefined,
   margin:           undefined,
+  padding:      undefined,
   limit:            undefined,
   pips:             undefined,
   animate:          true,
@@ -64,7 +65,7 @@ export default Component.extend({
     let element = this.get('element');
     let { noUiSlider: slider } = element;
     let properties = this.getProperties(
-      'start', 'step', 'margin',
+      'start', 'step', 'margin', 'padding',
       'limit', 'range', 'connect',
       'orientation', 'direction',
       'behaviour', 'animate', 'snap',
@@ -72,7 +73,7 @@ export default Component.extend({
       'multitouch', 'cssPrefix',
       'cssClasses', 'keyboardSupport'
     );
-    let sliderEvents = A(['change', 'set', 'slide', 'update', 'start', 'end']);
+    let sliderEvents = A(['change', 'set', 'slide', 'update']);
 
     // We first check if the element has a slider already created
     if (slider && slider.destroy) {
@@ -106,6 +107,34 @@ export default Component.extend({
         });
       }
     });
+
+    slider.on('start', () => {
+      run(this, function() {
+        this.onStart();
+        if (!isEmpty(this.get(`on-start`))) {
+          let val = this.get("slider").get();
+          this.sendAction(`on-start`, val);
+        }
+      });
+    });
+
+    slider.on('end', () => {
+      run(this, function() {
+        this.onEnd();
+        if (!isEmpty(this.get(`on-end`))) {
+          let val = this.get("slider").get();
+          this.sendAction(`on-end`, val);
+        }
+      });
+    });
+  },
+
+  onStart() {
+    this.sliding = true;
+  },
+
+  onEnd() {
+    delete this.sliding;
   },
 
   didUpdateAttrs() {
@@ -117,7 +146,7 @@ export default Component.extend({
     let properties = this.getProperties(
       'margin', 'limit', 'step',
       'range', 'animate', 'snap',
-      'start', 'keyboardSupport'
+      'start', 'padding', 'keyboardSupport'
     );
 
     if (slider) {
@@ -141,7 +170,7 @@ export default Component.extend({
   setValue: observer('start', function() {
     let { slider } = this;
 
-    if (slider) {
+    if (slider && !this.sliding) {
       let value = this.get('start');
       slider.set(value);
     }

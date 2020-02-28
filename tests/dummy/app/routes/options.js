@@ -8,6 +8,7 @@ export default Route.extend({
       defaultStart: [ 20, 80 ],
 
       margins: [ 20, 80 ],
+      padding: [ 20, 80 ],
       limits: [ 20, 60 ],
       steps: [ 20, 80 ],
       direction: 20,
@@ -33,6 +34,11 @@ export default Route.extend({
     limitsChanged(val) {
       let model = this.modelFor("options");
       model.set("limits", val);
+    },
+
+    paddingChanged(val) {
+      let model = this.modelFor("options");
+      model.set("padding", val);
     },
 
     directionChanged(val) {
