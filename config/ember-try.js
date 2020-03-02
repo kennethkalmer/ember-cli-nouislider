@@ -74,7 +74,6 @@ module.exports = async function() {
         env: {
           EMBER_OPTIONAL_FEATURES: JSON.stringify({
             'application-template-wrapper': true,
-            'default-async-observers': false,
             'template-only-glimmer-components': false
           })
         },
