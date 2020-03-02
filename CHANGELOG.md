@@ -1,5 +1,6 @@
 ## master
 
+## 1.2.0 2020-03-02
 
 * Update nouislider version (#75 - @crowjonah)
 * Don't call slider.set during dragging (#63 - @stephankaag)
