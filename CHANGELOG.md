@@ -49,7 +49,7 @@ _Version bump only because I can't NPM properly_
 * Fix incorrect behaviour with negative ranges (reporting #24 @Ramblurr, fixed #43 @eraleis)
 * Switch to using npm for nouislider (#44 - @bobisjan)
 
-## 0.11.0 2016-16-16 - Happy Reconciliation Day
+## 0.11.0 2016-12-16 - Happy Reconciliation Day
 
 * Bump to Ember 2.10.0
 * Updated docs example (#40 - @adambowles)
