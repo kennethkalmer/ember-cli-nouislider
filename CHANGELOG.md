@@ -1,5 +1,9 @@
 ## master
 
+## 1.2.1 2020-03-02
+
+* Merged several security related PR's (#77, #78, #79, #80, #81, #82, #83)
+
 ## 1.2.0 2020-03-02
 
 * Update nouislider version (#75 - @crowjonah)
