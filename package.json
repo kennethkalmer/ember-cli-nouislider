@@ -13,14 +13,17 @@
     "lint:js": "eslint .",
     "start": "ember serve",
     "test": "ember test",
-    "test:all": "ember try:each"
+    "test:all": "ember try:each",
+    "snyk-protect": "snyk protect",
+    "prepare": "yarn run snyk-protect"
   },
   "dependencies": {
     "broccoli-funnel": "^3.0.2",
     "broccoli-merge-trees": "^4.0.1",
     "ember-cli-babel": "^7.7.3",
     "ember-cli-htmlbars": "^4.2.3",
-    "nouislider": "^14.1.1"
+    "nouislider": "^14.1.1",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "@ember/optional-features": "^0.7.0",
@@ -64,5 +67,6 @@
   "ember-addon": {
     "configPath": "tests/dummy/config",
     "demoURL": "http://kennethkalmer.github.com/ember-cli-nouislider"
-  }
+  },
+  "snyk": true
 }
