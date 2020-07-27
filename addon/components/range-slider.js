@@ -118,7 +118,7 @@ export default Component.extend({
           const action = this.get('on-start');
 
           if (typeof(action) === 'string') {
-              this.sendAction('on-start', val);
+            this.sendAction('on-start', val);
           } else if (typeof(action) === 'function') {
             action(val);
           }
@@ -135,7 +135,7 @@ export default Component.extend({
           const action = this.get('on-end');
 
           if (typeof(action) === 'string') {
-              this.sendAction('on-end', val);
+            this.sendAction('on-end', val);
           } else if (typeof(action) === 'function') {
             action(val);
           }
