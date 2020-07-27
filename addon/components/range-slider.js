@@ -114,6 +114,14 @@ export default Component.extend({
         if (!isEmpty(this.get(`on-start`))) {
           let val = this.get("slider").get();
           this.sendAction(`on-start`, val);
+
+          const action = this.get('on-start');
+
+          if (typeof(action) === 'string') {
+              this.sendAction('on-start', val);
+          } else if (typeof(action) === 'function') {
+            action(val);
+          }
         }
       });
     });
@@ -123,7 +131,14 @@ export default Component.extend({
         this.onEnd();
         if (!isEmpty(this.get(`on-end`))) {
           let val = this.get("slider").get();
-          this.sendAction(`on-end`, val);
+
+          const action = this.get('on-end');
+
+          if (typeof(action) === 'string') {
+              this.sendAction('on-end', val);
+          } else if (typeof(action) === 'function') {
+            action(val);
+          }
         }
       });
     });
