@@ -5,12 +5,8 @@ import Component from '@ember/component';
 import { run } from '@ember/runloop';
 import { isEmpty } from '@ember/utils';
 import { observer, computed } from '@ember/object';
-import Ember from 'ember';
 import noUiSlider from 'noUiSlider';
 
-const {
-  Logger: { warn }
-} = Ember;
 
 export default Component.extend({
   attributeBindings: ['disabledOrUndefined:disabled'],
@@ -83,7 +79,7 @@ export default Component.extend({
     try {
       slider = noUiSlider.create(element, properties, true);
     } catch (err) {
-      warn(`[ember-cli-nouislider]: ${err}`);
+      console.warn(`[ember-cli-nouislider]: ${err}`);
     }
 
     this.slider = slider;
