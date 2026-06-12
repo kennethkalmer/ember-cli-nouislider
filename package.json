@@ -1,68 +1,23 @@
 {
-  "name": "ember-cli-nouislider",
-  "version": "1.2.1",
-  "description": "Ember range-slider component powered by nouislider",
-  "author": "Kenneth Kalmer",
-  "directories": {
-    "doc": "doc",
-    "test": "tests"
-  },
-  "scripts": {
-    "build": "ember build",
-    "lint:hbs": "ember-template-lint .",
-    "lint:js": "eslint .",
-    "start": "ember serve",
-    "test": "ember test",
-    "test:all": "ember try:each"
-  },
-  "dependencies": {
-    "broccoli-funnel": "^3.0.2",
-    "broccoli-merge-trees": "^4.0.1",
-    "ember-cli-babel": "^7.7.3",
-    "ember-cli-htmlbars": "^4.2.3",
-    "nouislider": "^14.1.1"
-  },
-  "devDependencies": {
-    "@ember/optional-features": "^0.7.0",
-    "broccoli-asset-rev": "^3.0.0",
-    "ember-cli": "~3.12.0",
-    "ember-cli-dependency-checker": "^3.1.0",
-    "ember-cli-eslint": "^5.1.0",
-    "ember-cli-inject-live-reload": "^1.8.2",
-    "ember-cli-sass": "^10.0.0",
-    "ember-cli-sri": "^2.1.1",
-    "ember-cli-template-lint": "^1.0.0-beta.1",
-    "ember-cli-uglify": "^3.0.0",
-    "ember-disable-prototype-extensions": "^1.1.3",
-    "ember-export-application-global": "^2.0.0",
-    "ember-load-initializers": "^2.0.0",
-    "ember-maybe-import-regenerator": "^0.1.6",
-    "ember-qunit": "^4.4.1",
-    "ember-resolver": "^5.0.1",
-    "ember-source": "~3.12.0",
-    "ember-source-channel-url": "^1.1.0",
-    "ember-try": "^1.0.0",
-    "eslint-plugin-ember": "^6.2.0",
-    "eslint-plugin-node": "^9.0.1",
-    "loader.js": "^4.7.0",
-    "qunit-dom": "^0.8.4",
-    "sass": "^1.26.1"
-  },
-  "keywords": [
-    "ember-addon",
-    "nouislider",
-    "slider",
-    "range slider",
-    "jquery range slider",
-    "ember-component"
-  ],
-  "repository": "https://github.com/kennethkalmer/ember-cli-nouislider",
+  "private": true,
+  "repository": "",
   "license": "MIT",
-  "engines": {
-    "node": "10.* || >= 12"
+  "author": "",
+  "scripts": {
+    "build": "pnpm --filter ember-cli-nouislider build",
+    "lint": "pnpm --filter '*' lint",
+    "lint:fix": "pnpm --filter '*' lint:fix",
+    "prepare": "pnpm build",
+    "start": "concurrently 'pnpm:start:*' --restart-after 5000 --prefixColors auto",
+    "start:addon": "pnpm --filter ember-cli-nouislider start --no-watch.clearScreen",
+    "start:test-app": "pnpm --filter test-app start",
+    "test": "pnpm --filter '*' test",
+    "test:ember": "pnpm --filter '*' test:ember"
   },
-  "ember-addon": {
-    "configPath": "tests/dummy/config",
-    "demoURL": "http://kennethkalmer.github.com/ember-cli-nouislider"
+  "packageManager": "pnpm@10.0.0",
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "prettier": "^3.0.3",
+    "prettier-plugin-ember-template-tag": "^2.0.2"
   }
 }
