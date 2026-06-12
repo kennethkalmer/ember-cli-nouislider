@@ -1,1 +1,32 @@
-/* Ember supports plain CSS out of the box. More info: https://cli.emberjs.com/release/advanced-use/stylesheets/ */
+body {
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  line-height: 1.5;
+}
+
+.app-header {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.app-header nav a {
+  margin: 0 0.25rem;
+}
+
+section {
+  margin-bottom: 2.5rem;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+.vertical-slider {
+  height: 200px;
+}
