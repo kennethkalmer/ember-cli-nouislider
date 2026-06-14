@@ -1,89 +1,94 @@
 # ember-cli-nouislider
 
-[![Build Status](https://travis-ci.org/kennethkalmer/ember-cli-nouislider.svg)](https://travis-ci.org/kennethkalmer/ember-cli-nouislider)
-[![npm version](https://badge.fury.io/js/ember-cli-nouislider.svg)](http://badge.fury.io/js/ember-cli-nouislider)
-[![Code Climate](https://codeclimate.com/github/kennethkalmer/ember-cli-nouislider/badges/gpa.svg)](https://codeclimate.com/github/kennethkalmer/ember-cli-nouislider)
-[![Ember Observer Score](http://emberobserver.com/badges/ember-cli-nouislider.svg)](http://emberobserver.com/addons/ember-cli-nouislider)
-[![Open Source Helpers](https://www.codetriage.com/kennethkalmer/ember-cli-nouislider/badges/users.svg)](https://www.codetriage.com/kennethkalmer/ember-cli-nouislider)
+Ember range-slider component powered by [noUiSlider](https://refreshless.com/nouislider/).
 
-This ember-cli addon provides you with a range-slider component, based on
-[noUiSlider](http://refreshless.com/nouislider). It includes everything you need,
-and adds no extra dependencies other than noUiSlider itself (which has no external dependencies).
-
-To get started simply install the addon:
-
-```
-$ ember install ember-cli-nouislider
-```
-
-This will install `nouislider` via Bower, and will include it into your application's
-mergetree, so you don't need to worry about anything there.
+Version 2.x is a [v2 Embroider addon](https://github.com/embroider-build/embroider/blob/main/docs/v2-faq.md), rewritten for modern Octane/Polaris Ember.
 
 ## Compatibility
 
-* Ember.js v3.12 or above
-* Ember CLI v2.13 or above
-* Node.js v10 or above
+* Ember.js v6.12 LTS or above
+* Ember CLI v6.12 or above
+* Node.js v20.19 or above
 
-## Demo & documentation
+For older Ember versions (Classic / pre-Octane), use the v1.x line.
 
-Have a look around then [demo and documentation](http://kennethkalmer.github.com/ember-cli-nouislider)
-to get a feel for how to use it.
-
-## Component
-
-You have the opportunity to customize if needed.
-
-To do this, generate your own component and re-export
-the one provided:
+## Installation
 
 ```
-$ ember g component range-slider
+ember install ember-cli-nouislider
 ```
+
+Then import the noUiSlider stylesheet wherever you load your app's CSS — for example in `app/app.js`:
+
+```js
+import 'nouislider/dist/nouislider.css';
+```
+
+## Usage
+
+```gjs
+import RangeSlider from 'ember-cli-nouislider/components/range-slider';
+import { hash } from '@ember/helper';
+
+<template>
+  <RangeSlider
+    @start={{40}}
+    @range={{hash min=0 max=100}}
+    @connect="lower"
+    @onChange={{this.handleChange}}
+  />
+</template>
+```
+
+Or in a classic `.hbs` template after re-exporting:
 
 ```js
 // app/components/range-slider.js
-import RangeSlider from 'ember-cli-nouislider/components/range-slider';
-
-export default RangeSlider;
+export { default } from 'ember-cli-nouislider/components/range-slider';
 ```
 
-Include the slider into your views like this:
-
-```handlebars
-{{range-slider start=someValue on-change=(action "changedAction")}}
+```hbs
+<RangeSlider @start={{this.value}} @onChange={{this.handleChange}} />
 ```
 
-And setup an action handler in your route:
+## Arguments
 
-```js
-// app/routes/my-route.js
-import Controller from '@ember/controller';
-import { debug } from '@ember/debug';
+All [noUiSlider options](https://refreshless.com/nouislider/slider-options/) are accepted as `@`-prefixed component arguments:
 
-export default Controller.extend({
-  // ...
-  actions: {
-    // ...
-    changedAction: function(value) {
-      debug( `New slider value: ${value}`);
-    }
-  }
-});
-```
+`@start`, `@step`, `@margin`, `@padding`, `@limit`, `@range`, `@connect`,
+`@orientation`, `@direction`, `@behaviour`, `@animate`, `@snap`, `@pips`,
+`@format`, `@tooltips`, `@keyboardSupport`, `@cssPrefix`, `@cssClasses`,
+`@disabled`.
 
-See the [documentation](https://kennethkalmer.github.com/ember-cli-nouislider/)
-for more actions.
+Convenience shortcuts:
 
-## Configuration
+* `@min` / `@max` — produces `range: { min, max }` when `@range` is not passed.
+* `@formatTo` / `@formatFrom` — produces a `format` object when `@format` is not passed.
 
-The component has a lot of configurable options, most of them mapping directly
-to the [original options](http://refreshless.com/nouislider/slider-options/).
-To see how the slider is initialized internally, please have a look at
-`app/components/range-slider.js` in this project, or browse through the
-[documentation](https://kennethkalmer.github.com/ember-cli-nouislider).
+## Events
 
+Pass functions for any noUiSlider event:
+
+* `@onChange`
+* `@onSet`
+* `@onSlide`
+* `@onUpdate`
+* `@onStart`
+* `@onEnd`
+
+Each callback receives the slider's current value (`slider.get()`).
+
+## Upgrading from 1.x
+
+Breaking changes:
+
+* Now a v2 Embroider addon. Consumers need ember-auto-import 2 (already standard).
+* Arguments use `@` prefix syntax (`@start` instead of `start`).
+* Event handlers use camelCase named arguments (`@onChange` instead of `on-change`). String action names (`sendAction`) are no longer supported.
+* You must import `nouislider/dist/nouislider.css` yourself; the addon no longer auto-injects it.
+* jQuery is no longer assumed.
+* `multitouch` option dropped (no longer exists in noUiSlider 15).
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE.md).
+[MIT](LICENSE.md)

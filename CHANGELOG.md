@@ -1,5 +1,20 @@
 ## master
 
+## 2.0.0 (unreleased)
+
+Major rewrite as a v2 Embroider addon.
+
+* BREAKING: Now a v2 Embroider addon. Consumers must use ember-auto-import 2+.
+* BREAKING: Octane-style component API. Use `@`-prefixed arguments (`@start` not `start`) and camelCase event callbacks (`@onChange` not `on-change`).
+* BREAKING: Removed support for string action names (`sendAction`).
+* BREAKING: Consumers must import `nouislider/dist/nouislider.css` themselves. The addon no longer auto-injects it.
+* BREAKING: Dropped jQuery requirement.
+* BREAKING: Removed `multitouch` option (gone in noUiSlider 15).
+* BREAKING: Component is now a Glimmer component backed by an `ember-modifier`.
+* Bumped noUiSlider to ^15.8.1.
+* Tested against Ember 6.12 LTS, ember-release and ember-beta channels.
+* Replaced Travis CI with GitHub Actions.
+
 ## 1.2.1 2020-03-02
 
 * Merged several security related PR's (#77, #78, #79, #80, #81, #82, #83)
