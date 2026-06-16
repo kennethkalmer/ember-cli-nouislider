@@ -78,6 +78,30 @@ Pass functions for any noUiSlider event:
 
 Each callback receives the slider's current value (`slider.get()`).
 
+### Event timing during render
+
+noUiSlider fires `set` and `update` events synchronously when the
+slider is created or when its options change. Because the addon's
+modifier manipulates the slider during the consuming component's
+render, those events can otherwise fire mid-render and trip Ember's
+autotracking assertion ("you attempted to update X after using it in
+the same computation").
+
+To keep handlers safe, the addon defers every event callback via
+`queueMicrotask`, so by the time your handler runs the current render
+frame has closed. You can mutate `@tracked` state directly:
+
+```js
+@action
+handleChange(value) {
+  this.value = value; // always safe
+}
+```
+
+The one-microtask delay is invisible to users for normal interactions
+(drag, tap, keyboard) but means handlers run "next tick" rather than
+synchronously.
+
 ## Upgrading from 1.x
 
 Breaking changes:

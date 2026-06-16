@@ -44,7 +44,7 @@ function pick(args, keys) {
   return out;
 }
 
-function eventCallback(args, event) {
+function callbackFor(args, event) {
   const camel = `on${event[0].toUpperCase()}${event.slice(1)}`;
   return args[camel];
 }
@@ -53,8 +53,10 @@ export default class RangeSliderModifier extends Modifier {
   slider = null;
   sliding = false;
   lastStart = undefined;
+  lastArgs = null;
 
   modify(element, _positional, named) {
+    this.lastArgs = named;
     if (!this.slider) {
       this.#setup(element, named);
     } else {
@@ -79,18 +81,12 @@ export default class RangeSliderModifier extends Modifier {
     try {
       this.slider = noUiSlider.create(element, options, true);
     } catch (err) {
-      // eslint-disable-next-line no-console
       console.warn(`[ember-cli-nouislider]: ${err}`);
       return;
     }
 
     for (const event of EVENTS) {
-      const callback = eventCallback(args, event);
-      this.slider.on(event, () => {
-        if (event === 'start') this.sliding = true;
-        if (event === 'end') this.sliding = false;
-        if (typeof callback === 'function') callback(this.slider.get());
-      });
+      this.slider.on(event, () => this.#dispatch(event));
     }
 
     this.lastStart = args.start;
@@ -126,5 +122,17 @@ export default class RangeSliderModifier extends Modifier {
       this.slider.set(args.start);
       this.lastStart = args.start;
     }
+  }
+
+  #dispatch(event) {
+    if (event === 'start') this.sliding = true;
+    if (event === 'end') this.sliding = false;
+
+    const callback = callbackFor(this.lastArgs, event);
+    if (typeof callback !== 'function') return;
+
+    const value = this.slider.get();
+
+    queueMicrotask(() => callback(value));
   }
 }
