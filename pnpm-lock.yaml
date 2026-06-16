@@ -237,6 +237,9 @@ importers:
       prettier-plugin-ember-template-tag:
         specifier: ^2.1.4
         version: 2.1.6(prettier@3.8.4)
+      prismjs:
+        specifier: ^1.30.0
+        version: 1.30.0
       qunit:
         specifier: ^2.25.0
         version: 2.26.0
@@ -5200,6 +5203,10 @@ packages:
   printf@0.6.1:
     resolution: {integrity: sha512-is0ctgGdPJ5951KulgfzvHGwJtZ5ck8l042vRkV6jrkpBzTmb/lueTqguWHy2JfVA+RY6gFVlaZgUS0j7S/dsw==}
     engines: {node: '>= 0.9.0'}
+
+  prismjs@1.30.0:
+    resolution: {integrity: sha512-DEvV2ZF2r2/63V+tK8hQvrR2ZGn10srHbXviTlcv7Kpzw8jWiNTqbVgjO3IY8RxrrOUF8VPMQQFysYYYv0YZxw==}
+    engines: {node: '>=6'}
 
   private@0.1.8:
     resolution: {integrity: sha512-VvivMrbvd2nKkiG38qjULzlc+4Vx4wm/whI9pQD35YrARNnhxeiRktSOhSukRLFNlzg6Br/cJPet5J/u19r/mg==}
@@ -12605,6 +12612,8 @@ snapshots:
       parse-ms: 4.0.0
 
   printf@0.6.1: {}
+
+  prismjs@1.30.0: {}
 
   private@0.1.8: {}
 

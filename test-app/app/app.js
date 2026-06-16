@@ -4,6 +4,10 @@ import loadInitializers from 'ember-load-initializers';
 import config from 'test-app/config/environment';
 import { importSync, isDevelopingApp, macroCondition } from '@embroider/macros';
 import 'nouislider/dist/nouislider.css';
+import 'prismjs';
+import 'prismjs/components/prism-markup-templating';
+import 'prismjs/components/prism-handlebars';
+import 'prismjs/themes/prism.css';
 
 if (macroCondition(isDevelopingApp())) {
   importSync('./deprecation-workflow');
