@@ -7,6 +7,8 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function () {
+  this.route('component');
+  this.route('download');
   this.route('events');
   this.route('options');
 });

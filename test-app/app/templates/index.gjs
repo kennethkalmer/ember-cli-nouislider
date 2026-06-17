@@ -1,41 +1,26 @@
-import { array, hash } from '@ember/helper';
-import RangeSlider from 'ember-cli-nouislider/components/range-slider';
-import Example from 'test-app/components/example';
+import HeroDemo from 'test-app/components/hero-demo';
+import SourceCode from 'test-app/components/source-code';
 
-const singleCode = `<RangeSlider
-  @start={{40}}
+const heroCode = `<RangeSlider
+  @start={{this.value}}
   @range={{hash min=0 max=100}}
   @connect="lower"
-/>`;
-
-const twoHandleCode = `<RangeSlider
-  @start={{array 20 80}}
-  @range={{hash min=0 max=100}}
-  @connect={{true}}
-  @tooltips={{true}}
+  @onChange={{this.handleChange}}
 />`;
 
 <template>
-  <section>
-    <h2>Single handle</h2>
-    <Example @code={{singleCode}}>
-      <RangeSlider
-        @start={{40}}
-        @range={{hash min=0 max=100}}
-        @connect="lower"
-      />
-    </Example>
-  </section>
+  <section class="hero">
+    <div class="hero-inner">
+      <h1 class="hero-title">&lt;range-slider&gt;</h1>
+      <p class="hero-subtitle">noUiSlider Range Slider Component for Ember.js</p>
 
-  <section>
-    <h2>Two handles</h2>
-    <Example @code={{twoHandleCode}}>
-      <RangeSlider
-        @start={{array 20 80}}
-        @range={{hash min=0 max=100}}
-        @connect={{true}}
-        @tooltips={{true}}
-      />
-    </Example>
+      <div class="hero-slider">
+        <HeroDemo />
+      </div>
+
+      <div class="hero-code">
+        <SourceCode @lang="handlebars" @code={{heroCode}} />
+      </div>
+    </div>
   </section>
 </template>

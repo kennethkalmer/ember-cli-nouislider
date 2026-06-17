@@ -7,6 +7,7 @@ import 'nouislider/dist/nouislider.css';
 import 'prismjs';
 import 'prismjs/components/prism-markup-templating';
 import 'prismjs/components/prism-handlebars';
+import 'prismjs/components/prism-bash';
 import 'prismjs/themes/prism.css';
 
 if (macroCondition(isDevelopingApp())) {
