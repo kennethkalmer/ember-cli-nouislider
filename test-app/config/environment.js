@@ -41,7 +41,10 @@ module.exports = function (environment) {
   }
 
   if (environment === 'production') {
-    // here you can enable a production-specific feature
+    // GitHub Pages serves under /ember-cli-nouislider/ and has no
+    // history fallback, so we use hash-based routing for the demo build.
+    ENV.rootURL = process.env.ROOT_URL || '/ember-cli-nouislider/';
+    ENV.locationType = 'hash';
   }
 
   return ENV;
