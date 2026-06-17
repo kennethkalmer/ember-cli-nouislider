@@ -4,48 +4,77 @@ import { tracked } from '@glimmer/tracking';
 import { hash } from '@ember/helper';
 import RangeSlider from 'ember-cli-nouislider/components/range-slider';
 
-export default class EventDemo extends Component {
-  @tracked log = [];
+const EVENTS = ['update', 'slide', 'set', 'change', 'start', 'end'];
 
-  @action
-  record(eventName, value) {
-    const entry = {
-      event: eventName,
-      value: JSON.stringify(value),
-      at: new Date().toLocaleTimeString(),
-    };
-    this.log = [entry, ...this.log].slice(0, 10);
+export default class EventDemo extends Component {
+  @tracked displayValue = 50;
+  @tracked fired = {};
+
+  flash(event, value) {
+    if (value !== undefined) this.displayValue = value;
+    const stamp = Date.now();
+    this.fired = { ...this.fired, [event]: stamp };
+    setTimeout(() => {
+      if (this.fired[event] === stamp) {
+        const next = { ...this.fired };
+        delete next[event];
+        this.fired = next;
+      }
+    }, 600);
   }
 
-  change = (value) => this.record('change', value);
-  set = (value) => this.record('set', value);
-  slide = (value) => this.record('slide', value);
-  update = (value) => this.record('update', value);
-  start = (value) => this.record('start', value);
-  end = (value) => this.record('end', value);
+  isActive = (event) => Boolean(this.fired[event]);
+
+  @action
+  onChange(value) {
+    this.flash('change', value);
+  }
+  @action
+  onSet(value) {
+    this.flash('set', value);
+  }
+  @action
+  onSlide(value) {
+    this.flash('slide', value);
+  }
+  @action
+  onUpdate(value) {
+    this.flash('update', value);
+  }
+  @action
+  onStart() {
+    this.flash('start');
+  }
+  @action
+  onEnd() {
+    this.flash('end');
+  }
 
   <template>
     <RangeSlider
       @start={{50}}
       @range={{hash min=0 max=100}}
-      @onChange={{this.change}}
-      @onSet={{this.set}}
-      @onSlide={{this.slide}}
-      @onUpdate={{this.update}}
-      @onStart={{this.start}}
-      @onEnd={{this.end}}
+      @connect="lower"
+      @onChange={{this.onChange}}
+      @onSet={{this.onSet}}
+      @onSlide={{this.onSlide}}
+      @onUpdate={{this.onUpdate}}
+      @onStart={{this.onStart}}
+      @onEnd={{this.onEnd}}
     />
 
-    <h3>Recent events</h3>
-    <ul>
-      {{#each this.log as |entry|}}
-        <li>
-          <strong>{{entry.event}}</strong>
-          &rarr;
-          <code>{{entry.value}}</code>
-          <small>({{entry.at}})</small>
-        </li>
+    <div class="event-badges">
+      {{#each EVENTS as |event|}}
+        <span
+          class="event-badge {{if (this.isActive event) 'event-badge-active'}}"
+        >
+          {{event}}
+        </span>
       {{/each}}
-    </ul>
+    </div>
+
+    <p class="event-value">value:
+      <strong>{{this.displayValue}}</strong>
+    </p>
   </template>
 }
