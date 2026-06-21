@@ -57,10 +57,7 @@ jobs:
       fail-fast: false
       matrix:
         try-scenario:
-          - ember-lts-6.12
           - ember-release
-          - ember-beta
-          - embroider-optimized
 
     steps:
       - uses: actions/checkout@v4

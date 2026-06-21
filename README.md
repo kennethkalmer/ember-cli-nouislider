@@ -6,9 +6,14 @@ Version 2.x is a [v2 Embroider addon](https://github.com/embroider-build/embroid
 
 ## Compatibility
 
-* Ember.js v6.12 LTS or above
+* Ember.js v7.0 or above (the demo test-app uses Embroider 4 + Vite, which
+  expects modern ember-source)
 * Ember CLI v6.12 or above
 * Node.js v20.19 or above
+
+Because the addon ships as a v2 Embroider addon (no runtime ember-cli
+build code of its own), it should also work with Ember LTS 6.12 in
+consuming apps — but only ember-source 7.x is exercised in CI.
 
 For older Ember versions (Classic / pre-Octane), use the v1.x line.
 

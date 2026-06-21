@@ -34,7 +34,7 @@ jobs:
       - name: Build demo
         env:
           ROOT_URL: /ember-cli-nouislider/
-        run: pnpm --filter test-app exec ember build --environment=production
+        run: pnpm --filter test-app exec vite build
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

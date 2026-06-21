@@ -16,3 +16,6 @@
 
 # broccoli-debug
 /DEBUG/
+/tmp/
+!/.env.development
+vite.config.mjs.timestamp-*

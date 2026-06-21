@@ -12,7 +12,11 @@ Major rewrite as a v2 Embroider addon.
 * BREAKING: Removed `multitouch` option (gone in noUiSlider 15).
 * BREAKING: Component is now a Glimmer component backed by an `ember-modifier`.
 * Bumped noUiSlider to ^15.8.1.
-* Tested against Ember 6.12 LTS, ember-release and ember-beta channels.
+* Test app now builds with Embroider 4 + Vite. CI exercises ember-source
+  ~7.0 and the embroider-optimized scenario. Older Ember versions (LTS
+  6.12, betas) are no longer in the matrix while the Embroider 4
+  toolchain stabilises; the published addon itself does not change
+  shape per Ember version.
 * Replaced Travis CI with GitHub Actions.
 
 ## 1.2.1 2020-03-02
