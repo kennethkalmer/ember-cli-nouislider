@@ -1,0 +1,43 @@
+name: Publish to npm
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch: {}
+
+# OIDC + read-only repo contents = enough for npm Trusted Publishers.
+# No NPM_TOKEN secret is used; npm exchanges the GitHub OIDC token for a
+# short-lived publish credential. The package must be configured for a
+# trusted publisher on npmjs.com (Settings → Trusted Publishers) pointing
+# at this repository + workflow file before the first run.
+#
+# See https://docs.npmjs.com/trusted-publishers
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  publish:
+    name: Publish ember-cli-nouislider
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build addon
+        run: pnpm --filter ember-cli-nouislider build
+
+      - name: Publish to npm with provenance
+        working-directory: ember-cli-nouislider
+        run: npm publish --provenance --access public
