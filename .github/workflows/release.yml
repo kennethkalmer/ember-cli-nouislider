@@ -28,7 +28,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: pnpm
 
       # Trusted Publishers / OIDC requires npm >= 11.5.1. Node 22 ships
