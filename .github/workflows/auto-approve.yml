@@ -1,0 +1,32 @@
+name: Auto-approve PR on LGTM comment
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  auto-approve:
+    if: |
+      github.event.issue.pull_request &&
+      github.event.comment.user.login == 'kennethkalmer' &&
+      contains(github.event.comment.body, 'LGTM')
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - uses: actions/create-github-app-token@v2
+        id: app-token
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
+      - uses: actions/github-script@v7
+        with:
+          github-token: ${{ steps.app-token.outputs.token }}
+          script: |
+            await github.rest.pulls.createReview({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              event: 'APPROVE'
+            });
