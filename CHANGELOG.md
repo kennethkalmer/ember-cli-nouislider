@@ -1,6 +1,6 @@
-## master
+## main
 
-## 2.0.0 (unreleased)
+## 2.0.0 2026-06-21
 
 Major rewrite as a v2 Embroider addon.
 
