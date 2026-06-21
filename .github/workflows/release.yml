@@ -30,7 +30,15 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-          registry-url: https://registry.npmjs.org
+
+      # Trusted Publishers / OIDC requires npm >= 11.5.1. Node 22 ships
+      # with npm 10.x.
+      #
+      # No `registry-url:` above and no NPM_TOKEN is set, so npm has no
+      # bearer auth in .npmrc to fall back to and uses the OIDC flow
+      # automatically when --provenance is requested.
+      - name: Upgrade npm for OIDC support
+        run: npm install -g npm@latest
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
